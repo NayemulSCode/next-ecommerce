@@ -1,0 +1,243 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String   @id @default(cuid())
+  email         String   @unique
+  name          String?
+  phone         String?
+  password      String?  // For credential authentication
+  role          UserRole @default(CUSTOMER)
+  isActive      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  
+  // Relations
+  orders        Order[]
+  addresses     Address[]
+  reviews       Review[]
+  cart          Cart?
+  
+  @@map("users")
+}
+
+model Category {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  slug        String   @unique
+  description String?
+  image       String?
+  isActive    Boolean  @default(true)
+  parentId    String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Relations
+  parent      Category?  @relation("CategoryHierarchy", fields: [parentId], references: [id])
+  children    Category[] @relation("CategoryHierarchy")
+  products    Product[]
+  
+  @@map("categories")
+}
+
+model Product {
+  id            String    @id @default(cuid())
+  name          String
+  slug          String    @unique
+  description   String?
+  shortDesc     String?
+  sku           String    @unique
+  price         Float
+  comparePrice  Float?
+  cost          Float?
+  trackQuantity Boolean   @default(true)
+  quantity      Int       @default(0)
+  weight        Float?
+  images        String?  // JSON string of image URLs
+  tags          String?  // JSON string of tags
+  status        ProductStatus @default(DRAFT)
+  featured      Boolean   @default(false)
+  isActive      Boolean   @default(true)
+  categoryId    String
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  // Relations
+  category      Category  @relation(fields: [categoryId], references: [id])
+  orderItems    OrderItem[]
+  cartItems     CartItem[]
+  reviews       Review[]
+  
+  @@map("products")
+}
+
+model Address {
+  id          String   @id @default(cuid())
+  userId      String
+  type        AddressType @default(SHIPPING)
+  firstName   String
+  lastName    String
+  company     String?
+  address1    String
+  address2    String?
+  city        String
+  province    String
+  country     String
+  postalCode  String
+  phone       String?
+  isDefault   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Relations
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  orders      Order[]
+  
+  @@map("addresses")
+}
+
+model Cart {
+  id        String   @id @default(cuid())
+  sessionId String?  @unique // For guest users
+  userId    String?  @unique // For authenticated users
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // Relations
+  user      User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  items     CartItem[]
+  
+  @@map("carts")
+}
+
+model CartItem {
+  id        String   @id @default(cuid())
+  cartId    String
+  productId String
+  quantity  Int      @default(1)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // Relations
+  cart      Cart     @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  
+  @@unique([cartId, productId])
+  @@map("cart_items")
+}
+
+model Order {
+  id              String      @id @default(cuid())
+  orderNumber     String      @unique
+  userId          String?
+  guestEmail      String?
+  status          OrderStatus @default(PENDING)
+  paymentStatus   PaymentStatus @default(PENDING)
+  paymentMethod   PaymentMethod?
+  currency        String      @default("USD")
+  subtotal        Float
+  tax             Float       @default(0)
+  shipping        Float       @default(0)
+  discount        Float       @default(0)
+  total           Float
+  notes           String?
+  addressId       String?
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+  
+  // Relations
+  user            User?       @relation(fields: [userId], references: [id])
+  address         Address?    @relation(fields: [addressId], references: [id])
+  items           OrderItem[]
+  
+  @@map("orders")
+}
+
+model OrderItem {
+  id          String   @id @default(cuid())
+  orderId     String
+  productId   String
+  quantity    Int
+  price       Float
+  total       Float
+  createdAt   DateTime @default(now())
+  
+  // Relations
+  order       Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product     Product  @relation(fields: [productId], references: [id])
+  
+  @@map("order_items")
+}
+
+model Review {
+  id        String   @id @default(cuid())
+  userId    String
+  productId String
+  rating    Int      @default(5)
+  title     String?
+  content   String?
+  isApproved Boolean @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // Relations
+  user      User     @relation(fields: [userId], references: [id])
+  product   Product  @relation(fields: [productId], references: [id])
+  
+  @@unique([userId, productId])
+  @@map("reviews")
+}
+
+// Enums
+enum UserRole {
+  ADMIN
+  CUSTOMER
+  STAFF
+}
+
+enum ProductStatus {
+  DRAFT
+  ACTIVE
+  ARCHIVED
+}
+
+enum AddressType {
+  SHIPPING
+  BILLING
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+  REFUNDED
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  FAILED
+  REFUNDED
+  PARTIALLY_REFUNDED
+}
+
+enum PaymentMethod {
+  STRIPE
+  CASH_ON_DELIVERY
+  BANK_TRANSFER
+}
