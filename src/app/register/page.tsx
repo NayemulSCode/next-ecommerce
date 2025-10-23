@@ -1,10 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
-import { Eye, EyeOff, Mail, Lock, User } from "lucide-react";
+import { Footer } from "@/components/layout/footer";
+import { Navbar } from "@/components/layout/navbar";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -17,8 +14,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/hooks/use-toast";
-import { Navbar } from "@/components/layout/navbar";
-import { Footer } from "@/components/layout/footer";
+import { Eye, EyeOff, Lock, Mail, User } from "lucide-react";
+import { signIn } from "next-auth/react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function RegisterPage() {
   const [name, setName] = useState("");
@@ -45,15 +45,55 @@ export default function RegisterPage() {
     }
 
     try {
-      // In a real app, you'd create the user in your database first
-      // For demo purposes, we'll just show a success message
+      // Register user via API
+      const response = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          password,
+          confirmPassword,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        toast({
+          title: "Registration failed",
+          description: data.error || "Something went wrong",
+          variant: "destructive",
+        });
+        setIsLoading(false);
+        return;
+      }
 
       toast({
         title: "Registration successful!",
-        description: "Your account has been created. You can now sign in.",
+        description: "Your account has been created. Signing you in...",
       });
 
-      router.push("/login");
+      // Auto sign in after registration
+      const result = await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+      });
+
+      if (result?.error) {
+        toast({
+          title: "Sign in failed",
+          description: "Please try signing in manually",
+          variant: "destructive",
+        });
+        router.push("/login");
+      } else {
+        router.push("/");
+        router.refresh();
+      }
     } catch (error) {
       toast({
         title: "Registration failed",
@@ -148,6 +188,7 @@ export default function RegisterPage() {
                       onChange={(e) => setName(e.target.value)}
                       className="pl-10"
                       required
+                      minLength={2}
                     />
                   </div>
                 </div>
@@ -175,12 +216,12 @@ export default function RegisterPage() {
                     <Input
                       id="password"
                       type={showPassword ? "text" : "password"}
-                      placeholder="Create a password"
+                      placeholder="Create a password (min. 8 characters)"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       className="pl-10 pr-10"
                       required
-                      minLength={6}
+                      minLength={8}
                     />
                     <Button
                       type="button"
@@ -210,7 +251,7 @@ export default function RegisterPage() {
                       onChange={(e) => setConfirmPassword(e.target.value)}
                       className="pl-10"
                       required
-                      minLength={6}
+                      minLength={8}
                     />
                   </div>
                 </div>

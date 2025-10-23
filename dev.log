@@ -3,28 +3,127 @@
 [33m[nodemon] watching path(s): server.ts src\**\*[39m
 [33m[nodemon] watching extensions: ts,tsx,js,jsx[39m
 [32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
 [32m[nodemon] restarting due to changes...[39m
 [32m[nodemon] starting `npx tsx server.ts`[39m
 > Ready on http://127.0.0.1:3000
 > Socket.IO server running at ws://127.0.0.1:3000/api/socketio
  ○ Compiling / ...
- ✓ Compiled / in 12.5s (971 modules)
- GET / 200 in 16758ms
+ ✓ Compiled / in 31.8s (989 modules)
+ GET / 200 in 36851ms
  ○ Compiling /api/placeholder/[...path] ...
- ⚠ Cross origin request detected from 127.0.0.1 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
-Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
- ✓ Compiled /api/auth/[...nextauth] in 10.2s (1213 modules)
+ ✓ Compiled /api/placeholder/[...path] in 5.2s (977 modules)
+ ○ Compiling /api/auth/[...nextauth] ...
+Error: Route "/api/placeholder/[...path]" used `params.path`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at GET (src\app\api\placeholder\[...path]\route.ts:8:36)
+   6 | ) {
+   7 |   try {
+>  8 |     const [width, height] = params.path
+     |                                    ^
+   9 |
+  10 |     // Generate a simple SVG placeholder
+  11 |     const w = parseInt(width) || 300
+ GET /api/placeholder/1200/400 200 in 12567ms
+ ✓ Compiled /favicon.ico in 10.5s (1291 modules)
+ GET /favicon.ico 200 in 5446ms
  ⨯ Error: @prisma/client did not initialize yet. Please run "prisma generate" and try to import it again.
     at eval (src\lib\db.ts:9:3)
-    at <unknown> (rsc)/./src/lib/db.ts (D:\fe-batch-6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:65:1)
-    at eval (webpack-internal:///(rsc)/./src/lib/auth/config.ts:8:65)
-    at <unknown> (rsc)/./src/lib/auth/config.ts (D:\fe-batch-6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:54:1)
+    at <unknown> (rsc)/./src/lib/db.ts (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:76:1)
+    at eval (webpack-internal:///(rsc)/./src/lib/auth/config.ts:5:65)
+    at <unknown> (rsc)/./src/lib/auth/config.ts (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:54:1)
     at eval (webpack-internal:///(rsc)/./src/app/api/auth/[...nextauth]/route.ts:8:74)
-    at <unknown> (rsc)/./src/app/api/auth/[...nextauth]/route.ts (D:\fe-batch-6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:43:1)
-    at __webpack_exec__ (D:\fe-batch-6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:283:39)
-    at <unknown> (D:\fe-batch-6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:284:476)
-    at <unknown> (D:\fe-batch-6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:284:47)
-    at Object.<anonymous> (D:\fe-batch-6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:287:3)
+    at <unknown> (rsc)/./src/app/api/auth/[...nextauth]/route.ts (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:43:1)
+    at __webpack_exec__ (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:338:39)
+    at <unknown> (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:339:496)
+    at <unknown> (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:339:47)
+    at Object.<anonymous> (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:342:3)
    7 | export const db =
    8 |   globalForPrisma.prisma ??
 >  9 |   new PrismaClient({
@@ -35,30 +134,20 @@ Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allow
   page: '/api/auth/session'
 }
  ○ Compiling /_error ...
- ✓ Compiled /_error in 1861ms (1553 modules)
-Error: Route "/api/placeholder/[...path]" used `params.path`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-    at GET (src\app\api\placeholder\[...path]\route.ts:8:36)
-   6 | ) {
-   7 |   try {
->  8 |     const [width, height] = params.path
-     |                                    ^
-   9 |
-  10 |     // Generate a simple SVG placeholder
-  11 |     const w = parseInt(width) || 300
- GET /api/placeholder/1200/400 200 in 17827ms
- GET /api/auth/session 500 in 17933ms
- GET / 200 in 5439ms
+ ✓ Compiled /_error in 11.3s (1631 modules)
+ GET / 200 in 7774ms
+ GET /api/auth/session 500 in 29338ms
  ⨯ Error: @prisma/client did not initialize yet. Please run "prisma generate" and try to import it again.
     at eval (src\lib\db.ts:9:3)
-    at <unknown> (rsc)/./src/lib/db.ts (D:\fe-batch-6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:65:1)
-    at eval (webpack-internal:///(rsc)/./src/lib/auth/config.ts:8:65)
-    at <unknown> (rsc)/./src/lib/auth/config.ts (D:\fe-batch-6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:54:1)
+    at <unknown> (rsc)/./src/lib/db.ts (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:76:1)
+    at eval (webpack-internal:///(rsc)/./src/lib/auth/config.ts:5:65)
+    at <unknown> (rsc)/./src/lib/auth/config.ts (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:54:1)
     at eval (webpack-internal:///(rsc)/./src/app/api/auth/[...nextauth]/route.ts:8:74)
-    at <unknown> (rsc)/./src/app/api/auth/[...nextauth]/route.ts (D:\fe-batch-6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:43:1)
-    at __webpack_exec__ (D:\fe-batch-6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:283:39)
-    at <unknown> (D:\fe-batch-6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:284:476)
-    at <unknown> (D:\fe-batch-6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:284:47)
-    at Object.<anonymous> (D:\fe-batch-6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:287:3)
+    at <unknown> (rsc)/./src/app/api/auth/[...nextauth]/route.ts (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:43:1)
+    at __webpack_exec__ (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:338:39)
+    at <unknown> (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:339:496)
+    at <unknown> (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:339:47)
+    at Object.<anonymous> (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:342:3)
    7 | export const db =
    8 |   globalForPrisma.prisma ??
 >  9 |   new PrismaClient({
@@ -68,26 +157,462 @@ Error: Route "/api/placeholder/[...path]" used `params.path`. `params` should be
   12 | {
   page: '/api/auth/_log'
 }
- GET / 200 in 306ms
- POST /api/auth/_log 500 in 451ms
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+ GET / 200 in 1023ms
+ POST /api/auth/_log 500 in 1134ms
+ ○ Compiling /register ...
+ ✓ Compiled /register in 4.5s (1674 modules)
+ GET /register 200 in 5896ms
+ ○ Compiling /api/auth/register ...
+ ✓ Compiled /api/auth/register in 1672ms (1347 modules)
+ ⨯ Error: @prisma/client did not initialize yet. Please run "prisma generate" and try to import it again.
+    at eval (src\lib\db.ts:9:3)
+    at <unknown> (rsc)/./src/lib/db.ts (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\register\route.js:65:1)
+    at eval (webpack-internal:///(rsc)/./src/lib/database-adapter.ts:7:61)
+    at <unknown> (rsc)/./src/lib/database-adapter.ts (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\register\route.js:54:1)
+    at eval (webpack-internal:///(rsc)/./src/app/api/auth/register/route.ts:5:79)
+    at <unknown> (rsc)/./src/app/api/auth/register/route.ts (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\register\route.js:43:1)
+    at __webpack_exec__ (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\register\route.js:239:39)
+    at <unknown> (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\register\route.js:240:128)
+    at <unknown> (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\register\route.js:240:47)
+    at Object.<anonymous> (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\register\route.js:243:3)
+   7 | export const db =
+   8 |   globalForPrisma.prisma ??
+>  9 |   new PrismaClient({
+     |   ^
+  10 |     log: ['query'],
+  11 |   })
+  12 | {
+  page: '/api/auth/register'
+}
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 1955ms (1440 modules)
+ POST /api/auth/register 500 in 5712ms
+ ⨯ Error: @prisma/client did not initialize yet. Please run "prisma generate" and try to import it again.
+    at eval (src\lib\db.ts:9:3)
+    at <unknown> (rsc)/./src/lib/db.ts (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\register\route.js:65:1)
+    at eval (webpack-internal:///(rsc)/./src/lib/database-adapter.ts:7:61)
+    at <unknown> (rsc)/./src/lib/database-adapter.ts (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\register\route.js:54:1)
+    at eval (webpack-internal:///(rsc)/./src/app/api/auth/register/route.ts:5:79)
+    at <unknown> (rsc)/./src/app/api/auth/register/route.ts (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\register\route.js:43:1)
+    at __webpack_exec__ (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\register\route.js:239:39)
+    at <unknown> (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\register\route.js:240:128)
+    at <unknown> (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\register\route.js:240:47)
+    at Object.<anonymous> (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\register\route.js:243:3)
+   7 | export const db =
+   8 |   globalForPrisma.prisma ??
+>  9 |   new PrismaClient({
+     |   ^
+  10 |     log: ['query'],
+  11 |   })
+  12 | {
+  page: '/api/auth/register'
+}
+ POST /api/auth/register 500 in 557ms
+ GET / 200 in 2823ms
+ ○ Compiling /api/placeholder/[...path] ...
+ ✓ Compiled /api/placeholder/[...path] in 2.3s (701 modules)
+Error: Route "/api/placeholder/[...path]" used `params.path`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at GET (src\app\api\placeholder\[...path]\route.ts:8:36)
+   6 | ) {
+   7 |   try {
+>  8 |     const [width, height] = params.path
+     |                                    ^
+   9 |
+  10 |     // Generate a simple SVG placeholder
+  11 |     const w = parseInt(width) || 300
+ GET /api/placeholder/1200/400 200 in 3731ms
+ ○ Compiling /favicon.ico ...
+ ⚠ Cross origin request detected from 127.0.0.1 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+ ✓ Compiled /api/auth/[...nextauth] in 1032ms (703 modules)
+ ✓ Compiled (1015 modules)
+ ⨯ Error: @prisma/client did not initialize yet. Please run "prisma generate" and try to import it again.
+    at eval (src\lib\db.ts:9:3)
+    at <unknown> (rsc)/./src/lib/db.ts (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:76:1)
+    at eval (webpack-internal:///(rsc)/./src/lib/auth/config.ts:5:65)
+    at <unknown> (rsc)/./src/lib/auth/config.ts (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:54:1)
+    at eval (webpack-internal:///(rsc)/./src/app/api/auth/[...nextauth]/route.ts:8:74)
+    at <unknown> (rsc)/./src/app/api/auth/[...nextauth]/route.ts (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:43:1)
+    at __webpack_exec__ (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:338:39)
+    at <unknown> (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:339:496)
+    at <unknown> (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:339:47)
+    at Object.<anonymous> (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:342:3)
+   7 | export const db =
+   8 |   globalForPrisma.prisma ??
+>  9 |   new PrismaClient({
+     |   ^
+  10 |     log: ['query'],
+  11 |   })
+  12 | {
+  page: '/api/auth/session'
+}
+ GET /favicon.ico 200 in 9066ms
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 2.8s (1674 modules)
+ GET /api/auth/session 500 in 12109ms
+ ⨯ Error: @prisma/client did not initialize yet. Please run "prisma generate" and try to import it again.
+    at eval (src\lib\db.ts:9:3)
+    at <unknown> (rsc)/./src/lib/db.ts (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:76:1)
+    at eval (webpack-internal:///(rsc)/./src/lib/auth/config.ts:5:65)
+    at <unknown> (rsc)/./src/lib/auth/config.ts (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:54:1)
+    at eval (webpack-internal:///(rsc)/./src/app/api/auth/[...nextauth]/route.ts:8:74)
+    at <unknown> (rsc)/./src/app/api/auth/[...nextauth]/route.ts (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:43:1)
+    at __webpack_exec__ (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:338:39)
+    at <unknown> (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:339:496)
+    at <unknown> (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:339:47)
+    at Object.<anonymous> (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:342:3)
+   7 | export const db =
+   8 |   globalForPrisma.prisma ??
+>  9 |   new PrismaClient({
+     |   ^
+  10 |     log: ['query'],
+  11 |   })
+  12 | {
+  page: '/api/auth/_log'
+}
+ POST /api/auth/_log 500 in 842ms
+   Reload env: .env
+ ✓ Compiled in 2.8s (1674 modules)
+ GET / 200 in 1254ms
+ GET /register 200 in 607ms
+ GET /register 200 in 1243ms
+ ⨯ Error: @prisma/client did not initialize yet. Please run "prisma generate" and try to import it again.
+    at eval (src\lib\db.ts:9:3)
+    at <unknown> (rsc)/./src/lib/db.ts (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:76:1)
+    at eval (webpack-internal:///(rsc)/./src/lib/auth/config.ts:5:65)
+    at <unknown> (rsc)/./src/lib/auth/config.ts (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:54:1)
+    at eval (webpack-internal:///(rsc)/./src/app/api/auth/[...nextauth]/route.ts:8:74)
+    at <unknown> (rsc)/./src/app/api/auth/[...nextauth]/route.ts (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:43:1)
+    at __webpack_exec__ (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:338:39)
+    at <unknown> (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:339:496)
+    at <unknown> (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:339:47)
+    at Object.<anonymous> (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:342:3)
+   7 | export const db =
+   8 |   globalForPrisma.prisma ??
+>  9 |   new PrismaClient({
+     |   ^
+  10 |     log: ['query'],
+  11 |   })
+  12 | {
+  page: '/api/auth/session'
+}
+ GET /api/auth/session 500 in 916ms
+ ⨯ Error: @prisma/client did not initialize yet. Please run "prisma generate" and try to import it again.
+    at eval (src\lib\db.ts:9:3)
+    at <unknown> (rsc)/./src/lib/db.ts (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:76:1)
+    at eval (webpack-internal:///(rsc)/./src/lib/auth/config.ts:5:65)
+    at <unknown> (rsc)/./src/lib/auth/config.ts (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:54:1)
+    at eval (webpack-internal:///(rsc)/./src/app/api/auth/[...nextauth]/route.ts:8:74)
+    at <unknown> (rsc)/./src/app/api/auth/[...nextauth]/route.ts (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:43:1)
+    at __webpack_exec__ (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:338:39)
+    at <unknown> (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:339:496)
+    at <unknown> (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:339:47)
+    at Object.<anonymous> (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:342:3)
+   7 | export const db =
+   8 |   globalForPrisma.prisma ??
+>  9 |   new PrismaClient({
+     |   ^
+  10 |     log: ['query'],
+  11 |   })
+  12 | {
+  page: '/api/auth/_log'
+}
+ POST /api/auth/_log 500 in 660ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 5.7s (1253 modules)
+ GET /api 404 in 7733ms
+ ○ Compiling /api/auth/[...nextauth] ...
+ ✓ Compiled /api/auth/[...nextauth] in 1353ms (1000 modules)
+ ⨯ Error: @prisma/client did not initialize yet. Please run "prisma generate" and try to import it again.
+    at eval (src\lib\db.ts:9:3)
+    at <unknown> (rsc)/./src/lib/db.ts (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:76:1)
+    at eval (webpack-internal:///(rsc)/./src/lib/auth/config.ts:5:65)
+    at <unknown> (rsc)/./src/lib/auth/config.ts (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:54:1)
+    at eval (webpack-internal:///(rsc)/./src/app/api/auth/[...nextauth]/route.ts:8:74)
+    at <unknown> (rsc)/./src/app/api/auth/[...nextauth]/route.ts (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:43:1)
+    at __webpack_exec__ (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:338:39)
+    at <unknown> (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:339:496)
+    at <unknown> (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:339:47)
+    at Object.<anonymous> (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:342:3)
+   7 | export const db =
+   8 |   globalForPrisma.prisma ??
+>  9 |   new PrismaClient({
+     |   ^
+  10 |     log: ['query'],
+  11 |   })
+  12 | {
+  page: '/api/auth/session'
+}
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 1636ms (1663 modules)
+ GET /api/auth/session 500 in 8678ms
+ ⨯ Error: @prisma/client did not initialize yet. Please run "prisma generate" and try to import it again.
+    at eval (src\lib\db.ts:9:3)
+    at <unknown> (rsc)/./src/lib/db.ts (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:76:1)
+    at eval (webpack-internal:///(rsc)/./src/lib/auth/config.ts:5:65)
+    at <unknown> (rsc)/./src/lib/auth/config.ts (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:54:1)
+    at eval (webpack-internal:///(rsc)/./src/app/api/auth/[...nextauth]/route.ts:8:74)
+    at <unknown> (rsc)/./src/app/api/auth/[...nextauth]/route.ts (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:43:1)
+    at __webpack_exec__ (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:338:39)
+    at <unknown> (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:339:496)
+    at <unknown> (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:339:47)
+    at Object.<anonymous> (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:342:3)
+   7 | export const db =
+   8 |   globalForPrisma.prisma ??
+>  9 |   new PrismaClient({
+     |   ^
+  10 |     log: ['query'],
+  11 |   })
+  12 | {
+  page: '/api/auth/_log'
+}
+ GET / 200 in 4957ms
+ POST /api/auth/_log 500 in 1314ms
+ ⨯ Error: @prisma/client did not initialize yet. Please run "prisma generate" and try to import it again.
+    at eval (src\lib\db.ts:9:3)
+    at <unknown> (rsc)/./src/lib/db.ts (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:76:1)
+    at eval (webpack-internal:///(rsc)/./src/lib/auth/config.ts:5:65)
+    at <unknown> (rsc)/./src/lib/auth/config.ts (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:54:1)
+    at eval (webpack-internal:///(rsc)/./src/app/api/auth/[...nextauth]/route.ts:8:74)
+    at <unknown> (rsc)/./src/app/api/auth/[...nextauth]/route.ts (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:43:1)
+    at __webpack_exec__ (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:338:39)
+    at <unknown> (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:339:496)
+    at <unknown> (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:339:47)
+    at Object.<anonymous> (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:342:3)
+   7 | export const db =
+   8 |   globalForPrisma.prisma ??
+>  9 |   new PrismaClient({
+     |   ^
+  10 |     log: ['query'],
+  11 |   })
+  12 | {
+  page: '/api/auth/session'
+}
+ GET /api/auth/session 500 in 497ms
+ ⨯ Error: @prisma/client did not initialize yet. Please run "prisma generate" and try to import it again.
+    at eval (src\lib\db.ts:9:3)
+    at <unknown> (rsc)/./src/lib/db.ts (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:76:1)
+    at eval (webpack-internal:///(rsc)/./src/lib/auth/config.ts:5:65)
+    at <unknown> (rsc)/./src/lib/auth/config.ts (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:54:1)
+    at eval (webpack-internal:///(rsc)/./src/app/api/auth/[...nextauth]/route.ts:8:74)
+    at <unknown> (rsc)/./src/app/api/auth/[...nextauth]/route.ts (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:43:1)
+    at __webpack_exec__ (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:338:39)
+    at <unknown> (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:339:496)
+    at <unknown> (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:339:47)
+    at Object.<anonymous> (D:\ostad batch 6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:342:3)
+   7 | export const db =
+   8 |   globalForPrisma.prisma ??
+>  9 |   new PrismaClient({
+     |   ^
+  10 |     log: ['query'],
+  11 |   })
+  12 | {
+  page: '/api/auth/_log'
+}
+ POST /api/auth/_log 500 in 1115ms
+   Reload env: .env
+ ✓ Compiled in 1358ms (1663 modules)
+ GET / 200 in 1059ms
+ GET /register 200 in 301ms
 [32m[nodemon] restarting due to changes...[39m
 [32m[nodemon] starting `npx tsx server.ts`[39m
 > Ready on http://127.0.0.1:3000
 > Socket.IO server running at ws://127.0.0.1:3000/api/socketio
  ○ Compiling /register ...
+ ✓ Compiled /api/auth/register in 15.6s (1059 modules)
+🗄️  Using Prisma (SQLite) adapter
+🚀 ~ POST ~ body: {
+  name: 'Setab uddin',
+  email: 'nayemul.codeware+005@gmail.com',
+  password: 'Nayemul@12',
+  confirmPassword: 'Nayemul@12'
+}
+Registration error: Error [PrismaClientInitializationError]: 
+Invalid `prisma.user.findUnique()` invocation:
+
+
+Error querying the database: Error code 14: Unable to open the database file
+    at async PrismaAdapter.getUserByEmail (src\lib\database-adapter.ts:50:12)
+    at async POST (src\app\api\auth\register\route.ts:28:26)
+  48 |
+  49 |   async getUserByEmail(email: string) {
+> 50 |     return await prismaDb.user.findUnique({ where: { email } });
+     |            ^
+  51 |   }
+  52 |
+  53 |   async updateUser(id: string, data: any) { {
+  clientVersion: '6.17.1',
+  errorCode: undefined,
+  retryable: undefined
+}
+ POST /api/auth/register 500 in 15537ms
+ GET /register 200 in 23226ms
+   Reload env: .env
+ ✓ Compiled in 670ms (405 modules)
+ ✓ Compiled /api/auth/register in 446ms (182 modules)
+🍃 Using MongoDB adapter
+🚀 ~ POST ~ body: {
+  name: 'Setab uddin',
+  email: 'nayemul.codeware+005@gmail.com',
+  password: 'Nayemul@12',
+  confirmPassword: 'Nayemul@12'
+}
+Connected to MongoDB successfully
+ POST /api/auth/register 201 in 1332ms
+ ○ Compiling /api/auth/[...nextauth] ...
+ ✓ Compiled /api/auth/[...nextauth] in 3.4s (821 modules)
+🍃 Using MongoDB adapter
+🍃 Using MongoDB adapter
+ GET /api/auth/providers 200 in 10355ms
+ GET /api/auth/csrf 200 in 125ms
+Connected to MongoDB successfully
+ POST /api/auth/callback/credentials 401 in 456ms
+ ○ Compiling /login ...
+ ✓ Compiled /login in 3s (1294 modules)
+ GET /login 200 in 4512ms
+🍃 Using MongoDB adapter
+🍃 Using MongoDB adapter
+ GET /api/auth/providers 200 in 290ms
+ GET /api/auth/csrf 200 in 74ms
+Connected to MongoDB successfully
+ POST /api/auth/callback/credentials 401 in 343ms
+🍃 Using MongoDB adapter
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+ ○ Compiling /api/auth/[...nextauth] ...
+ ✓ Compiled /api/auth/[...nextauth] in 8s (591 modules)
+🍃 Using MongoDB adapter
+🍃 Using MongoDB adapter
+ GET /api/auth/error 302 in 16105ms
+ ○ Compiling /login ...
+ ✓ Compiled /login in 7.7s (1290 modules)
+ GET /login 200 in 2468ms
+🍃 Using MongoDB adapter
+ GET /api/auth/session 200 in 879ms
+ GET /api/auth/providers 200 in 144ms
+ GET /api/auth/csrf 200 in 145ms
+Connected to MongoDB successfully
+ POST /api/auth/callback/credentials 401 in 528ms
+🍃 Using MongoDB adapter
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+ ○ Compiling /api/auth/[...nextauth] ...
+ ✓ Compiled /api/auth/[...nextauth] in 8.2s (591 modules)
+🍃 Using MongoDB adapter
+ GET /api/auth/error 200 in 12695ms
+🍃 Using MongoDB adapter
+ GET /api/auth/error 302 in 4573ms
+ ○ Compiling /login ...
+ ✓ Compiled /login in 7.1s (1290 modules)
+ GET /login?error=undefined 200 in 9610ms
+🍃 Using MongoDB adapter
+ GET /api/auth/session 200 in 777ms
+ GET /api/auth/providers 200 in 119ms
+ GET /api/auth/csrf 200 in 89ms
+✅ Connected to MongoDB successfully
+ POST /api/auth/callback/credentials 200 in 685ms
+ GET /api/auth/session 200 in 74ms
+🍃 Using MongoDB adapter
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+ ○ Compiling /api/auth/[...nextauth] ...
+ ✓ Compiled /api/auth/[...nextauth] in 4.7s (591 modules)
+🍃 Using MongoDB adapter
+🍃 Using MongoDB adapter
+ GET /api/auth/providers 200 in 12324ms
+ GET /api/auth/csrf 200 in 108ms
+✅ Connected to MongoDB successfully
+ POST /api/auth/callback/credentials 200 in 445ms
+ GET /api/auth/session 200 in 94ms
+🍃 Using MongoDB adapter
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+ ○ Compiling /api/auth/[...nextauth] ...
+ ✓ Compiled /api/auth/[...nextauth] in 6.9s (591 modules)
+🍃 Using MongoDB adapter
+🍃 Using MongoDB adapter
+ GET /api/auth/error 302 in 15444ms
+ ○ Compiling /login ...
+ ✓ Compiled /login in 9.1s (1290 modules)
+🚀 ~ Navbar ~ session: undefined
+🚀 ~ Navbar ~ session: undefined
+ GET /login?error=undefined 200 in 11593ms
+ ○ Compiling /favicon.ico ...
+ ✓ Compiled /favicon.ico in 2.1s (885 modules)
+ GET /favicon.ico 200 in 3056ms
+🍃 Using MongoDB adapter
+ GET /api/auth/session 200 in 563ms
+🍃 Using MongoDB adapter
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 3.8s (965 modules)
+ GET /account 404 in 6311ms
+ GET /account 404 in 925ms
+🚀 ~ Navbar ~ session: undefined
+ GET /login?error=undefined 200 in 890ms
+ ○ Compiling /api/auth/[...nextauth] ...
+ ✓ Compiled /api/auth/[...nextauth] in 1190ms (872 modules)
+🍃 Using MongoDB adapter
+ GET /api/auth/session 200 in 2265ms
+🍃 Using MongoDB adapter
+ GET /api/auth/session 200 in 188ms
+ ○ Compiling / ...
+🍃 Using MongoDB adapter
+ ✓ Compiled / in 3.6s (1317 modules)
+ GET / 200 in 4857ms
+🍃 Using MongoDB adapter
+ GET /api/auth/csrf 200 in 417ms
+ POST /api/auth/signout 200 in 155ms
+🚀 ~ Navbar ~ session: undefined
+🍃 Using MongoDB adapter
+ GET / 200 in 2609ms
+ GET /api/auth/session 200 in 71ms
+🍃 Using MongoDB adapter
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+   Reload env: .env
+ ○ Compiling /login ...
+ ✓ Compiled /login in 12s (973 modules)
+ GET /login 200 in 13434ms
+ ○ Compiling /api/auth/[...nextauth] ...
+ ✓ Compiled /api/auth/[...nextauth] in 3.4s (1276 modules)
+🍃 Using MongoDB adapter
+🍃 Using MongoDB adapter
+ GET /api/auth/providers 200 in 11973ms
+ GET /api/auth/csrf 200 in 76ms
+✅ Connected to MongoDB successfully
+ POST /api/auth/callback/credentials 200 in 395ms
+ GET /api/auth/session 200 in 85ms
+ ○ Compiling / ...
+ ✓ Compiled / in 2.7s (1317 modules)
+ GET / 200 in 4130ms
+ GET / 200 in 261ms
+🍃 Using MongoDB adapter
+🍃 Using MongoDB adapter
+ GET /api/auth/csrf 200 in 402ms
+ POST /api/auth/signout 200 in 138ms
+🚀 ~ Navbar ~ session: undefined
+ GET / 200 in 2644ms
+🍃 Using MongoDB adapter
+ GET /api/auth/session 200 in 112ms
+🍃 Using MongoDB adapter
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m

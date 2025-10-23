@@ -1,10 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { signIn, getSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
-import { Eye, EyeOff, Mail, Lock } from "lucide-react";
+import { Footer } from "@/components/layout/footer";
+import { Navbar } from "@/components/layout/navbar";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -17,8 +14,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/hooks/use-toast";
-import { Navbar } from "@/components/layout/navbar";
-import { Footer } from "@/components/layout/footer";
+import { Eye, EyeOff, Lock, Mail } from "lucide-react";
+import { signIn } from "next-auth/react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -38,6 +38,7 @@ export default function LoginPage() {
         password,
         redirect: false,
       });
+      console.log("🚀 ~ handleSubmit ~ result:", result);
 
       if (result?.error) {
         toast({
@@ -200,16 +201,6 @@ export default function LoginPage() {
                   >
                     Sign up
                   </Link>
-                </p>
-              </div>
-
-              {/* Demo Account Info */}
-              <div className="bg-muted/50 rounded-lg p-4 text-sm">
-                <p className="font-medium mb-2">Demo Account:</p>
-                <p className="text-muted-foreground">
-                  Email: demo@example.com
-                  <br />
-                  Password: password123
                 </p>
               </div>
             </CardContent>
