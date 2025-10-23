@@ -3,236 +3,17 @@
 [33m[nodemon] watching path(s): server.ts src\**\*[39m
 [33m[nodemon] watching extensions: ts,tsx,js,jsx[39m
 [32m[nodemon] starting `npx tsx server.ts`[39m
-node:internal/modules/cjs/loader:1365
-  const err = new Error(message);
-              ^
-
-Error: Cannot find module '@/lib/socket'
-Require stack:
-- D:\fe-batch-6\next-ecommerce\server.ts
-    at node:internal/modules/cjs/loader:1365:15
-    at nextResolveSimple (D:\fe-batch-6\next-ecommerce\node_modules\tsx\dist\register-D46fvsV_.cjs:4:1004)
-    at D:\fe-batch-6\next-ecommerce\node_modules\tsx\dist\register-D46fvsV_.cjs:3:2630
-    at D:\fe-batch-6\next-ecommerce\node_modules\tsx\dist\register-D46fvsV_.cjs:3:1542
-    at resolveTsPaths (D:\fe-batch-6\next-ecommerce\node_modules\tsx\dist\register-D46fvsV_.cjs:4:760)
-    at D:\fe-batch-6\next-ecommerce\node_modules\tsx\dist\register-D46fvsV_.cjs:4:1102
-    at m._resolveFilename (file:///D:/fe-batch-6/next-ecommerce/node_modules/tsx/dist/register-B7jrtLTO.mjs:1:789)
-    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)
-    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)
-    at Function._load (node:internal/modules/cjs/loader:1175:37) {
-  code: 'MODULE_NOT_FOUND',
-  requireStack: [ 'D:\\fe-batch-6\\next-ecommerce\\server.ts' ]
-}
-
-Node.js v22.18.0
-[31m[nodemon] app crashed - waiting for file changes before starting...[39m
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
 [32m[nodemon] restarting due to changes...[39m
 [32m[nodemon] starting `npx tsx server.ts`[39m
 > Ready on http://127.0.0.1:3000
 > Socket.IO server running at ws://127.0.0.1:3000/api/socketio
  ○ Compiling / ...
- ✓ Compiled / in 17.2s (952 modules)
- ⨯ Error: [next-auth]: `useSession` must be wrapped in a <SessionProvider />
-    at Navbar (src\components\layout\navbar.tsx:36:39)
-  34 |
-  35 | export function Navbar() {
-> 36 |   const { data: session } = useSession();
-     |                                       ^
-  37 |   const [categories, setCategories] = useState<Category[]>([]);
-  38 |   const [isScrolled, setIsScrolled] = useState(false);
-  39 |   const [searchQuery, setSearchQuery] = useState(""); {
-  digest: '2580662102'
-}
- GET / 500 in 19570ms
+ ✓ Compiled / in 12.5s (971 modules)
+ GET / 200 in 16758ms
+ ○ Compiling /api/placeholder/[...path] ...
  ⚠ Cross origin request detected from 127.0.0.1 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
 Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
- ○ Compiling /favicon.ico ...
- ✓ Compiled /favicon.ico in 1093ms (559 modules)
- GET /favicon.ico 200 in 1754ms
- GET /favicon.ico 200 in 19ms
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
- ○ Compiling / ...
- ✓ Compiled / in 4.9s (948 modules)
- GET / 200 in 7805ms
- ⚠ Cross origin request detected from 127.0.0.1 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
-Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
- ○ Compiling /_not-found ...
- ✓ Compiled /_not-found in 2s (956 modules)
- GET /favicon.ico 200 in 3072ms
- GET /api/auth/session 404 in 2882ms
- POST /api/auth/_log 404 in 187ms
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-Error: listen EADDRINUSE: address already in use 127.0.0.1:3000
-    at <unknown> (Error: listen EADDRINUSE: address already in use 127.0.0.1:3000) {
-  code: 'EADDRINUSE',
-  errno: -4091,
-  syscall: 'listen',
-  address: '127.0.0.1',
-  port: 3000
-}
- ⨯ uncaughtException: Error: listen EADDRINUSE: address already in use 127.0.0.1:3000
-    at <unknown> (Error: listen EADDRINUSE: address already in use 127.0.0.1:3000) {
-  code: 'EADDRINUSE',
-  errno: -4091,
-  syscall: 'listen',
-  address: '127.0.0.1',
-  port: 3000
-}
- ⨯ uncaughtException:  Error: listen EADDRINUSE: address already in use 127.0.0.1:3000
-    at <unknown> (Error: listen EADDRINUSE: address already in use 127.0.0.1:3000) {
-  code: 'EADDRINUSE',
-  errno: -4091,
-  syscall: 'listen',
-  address: '127.0.0.1',
-  port: 3000
-}
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-Server startup error: Error: ENOENT: no such file or directory, open 'D:\fe-batch-6\next-ecommerce\.next\prerender-manifest.json'
-    at async createCustomServer (server.ts:22:5) {
-  errno: -4058,
-  code: 'ENOENT',
-  syscall: 'open',
-  path: 'D:\\fe-batch-6\\next-ecommerce\\.next\\prerender-manifest.json'
-}
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
- ○ Compiling / ...
- ✓ Compiled / in 8.6s (971 modules)
- GET / 200 in 11471ms
- ○ Compiling /_not-found ...
- ⚠ Cross origin request detected from 127.0.0.1 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
-Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
- ✓ Compiled /api/auth/[...nextauth] in 2.3s (962 modules)
- ✓ Compiled in 920ms (399 modules)
+ ✓ Compiled /api/auth/[...nextauth] in 10.2s (1213 modules)
  ⨯ Error: @prisma/client did not initialize yet. Please run "prisma generate" and try to import it again.
     at eval (src\lib\db.ts:9:3)
     at <unknown> (rsc)/./src/lib/db.ts (D:\fe-batch-6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:65:1)
@@ -253,12 +34,20 @@ Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allow
   12 | {
   page: '/api/auth/session'
 }
- GET /api/placeholder/1200/400 404 in 10439ms
- ○ Compiling /favicon.ico ...
- ✓ Compiled /favicon.ico in 5.1s (1558 modules)
- GET /favicon.ico 200 in 7273ms
- GET /api/auth/session 500 in 17041ms
- GET / 200 in 5121ms
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 1861ms (1553 modules)
+Error: Route "/api/placeholder/[...path]" used `params.path`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at GET (src\app\api\placeholder\[...path]\route.ts:8:36)
+   6 | ) {
+   7 |   try {
+>  8 |     const [width, height] = params.path
+     |                                    ^
+   9 |
+  10 |     // Generate a simple SVG placeholder
+  11 |     const w = parseInt(width) || 300
+ GET /api/placeholder/1200/400 200 in 17827ms
+ GET /api/auth/session 500 in 17933ms
+ GET / 200 in 5439ms
  ⨯ Error: @prisma/client did not initialize yet. Please run "prisma generate" and try to import it again.
     at eval (src\lib\db.ts:9:3)
     at <unknown> (rsc)/./src/lib/db.ts (D:\fe-batch-6\next-ecommerce\.next\server\app\api\auth\[...nextauth]\route.js:65:1)
@@ -279,12 +68,8 @@ Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allow
   12 | {
   page: '/api/auth/_log'
 }
- GET / 200 in 255ms
- POST /api/auth/_log 500 in 408ms
- GET /favicon.ico 200 in 16ms
- GET /favicon.ico 200 in 16ms
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
+ GET / 200 in 306ms
+ POST /api/auth/_log 500 in 451ms
 [32m[nodemon] restarting due to changes...[39m
 [32m[nodemon] starting `npx tsx server.ts`[39m
 > Ready on http://127.0.0.1:3000
@@ -305,98 +90,4 @@ Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allow
 [32m[nodemon] starting `npx tsx server.ts`[39m
 > Ready on http://127.0.0.1:3000
 > Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-   Reload env: .env
-   Reload env: .env
- ○ Compiling / ...
+ ○ Compiling /register ...
