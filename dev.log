@@ -616,3 +616,401 @@ Connected to MongoDB successfully
 🍃 Using MongoDB adapter
 [32m[nodemon] restarting due to changes...[39m
 [32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+ ○ Compiling /login ...
+ ✓ Compiled /login in 9.8s (973 modules)
+ GET /login 200 in 11371ms
+ ○ Compiling /api/auth/[...nextauth] ...
+ ✓ Compiled /api/auth/[...nextauth] in 3.7s (1276 modules)
+🍃 Using MongoDB adapter
+🍃 Using MongoDB adapter
+ GET /api/auth/providers 200 in 11626ms
+ GET /api/auth/csrf 200 in 87ms
+✅ Connected to MongoDB successfully
+ POST /api/auth/callback/credentials 200 in 387ms
+ GET /api/auth/session 200 in 82ms
+ ○ Compiling / ...
+ ✓ Compiled / in 2.5s (1317 modules)
+ GET / 200 in 3774ms
+ GET / 200 in 195ms
+🍃 Using MongoDB adapter
+🍃 Using MongoDB adapter
+ GET /api/auth/session 200 in 600ms
+🍃 Using MongoDB adapter
+ ○ Compiling /products ...
+ ✓ Compiled /products in 3.4s (1314 modules)
+ GET /products 200 in 5648ms
+🍃 Using MongoDB adapter
+ GET /api/auth/session 200 in 282ms
+🍃 Using MongoDB adapter
+ GET /api/auth/session 200 in 144ms
+🍃 Using MongoDB adapter
+ GET /api/auth/session 200 in 64ms
+🍃 Using MongoDB adapter
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+[32m[nodemon] restarting due to changes...[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+ ○ Compiling /products ...
+ ✓ Compiled / in 14.8s (1016 modules)
+ GET / 200 in 17452ms
+ ○ Compiling /favicon.ico ...
+ ✓ Compiled /favicon.ico in 1930ms (611 modules)
+ GET /favicon.ico 200 in 3136ms
+ ○ Compiling /api/auth/[...nextauth] ...
+ ✓ Compiled /api/auth/[...nextauth] in 6.9s (1347 modules)
+🍃 Using MongoDB adapter
+ ○ Compiling /login ...
+ ✓ Compiled /login in 7.5s (1366 modules)
+🍃 Using MongoDB adapter
+ GET /api/auth/session 200 in 27833ms
+ GET /login 200 in 12940ms
+🍃 Using MongoDB adapter
+ GET /api/auth/providers 200 in 421ms
+ GET /api/auth/csrf 200 in 54ms
+✅ Connected to MongoDB successfully
+ POST /api/auth/callback/credentials 200 in 425ms
+ GET /api/auth/session 200 in 55ms
+ GET / 200 in 270ms
+ GET / 200 in 233ms
+🍃 Using MongoDB adapter
+ ○ Compiling /account ...
+ ✓ Compiled /account in 7.2s (1417 modules)
+ GET /account 200 in 7813ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 4.1s (1422 modules)
+ GET /api/user/profile 404 in 5594ms
+ GET /api/orders/user 404 in 348ms
+🍃 Using MongoDB adapter
+ GET /api/auth/csrf 200 in 437ms
+ POST /api/auth/signout 200 in 52ms
+ GET /account 200 in 769ms
+🍃 Using MongoDB adapter
+ GET /api/auth/session 200 in 313ms
+ GET /login 200 in 207ms
+ GET /api/auth/providers 200 in 39ms
+ GET /api/auth/csrf 200 in 69ms
+✅ Connected to MongoDB successfully
+ POST /api/auth/callback/credentials 200 in 357ms
+ GET /api/auth/session 200 in 63ms
+ GET / 200 in 256ms
+ GET / 200 in 247ms
+🍃 Using MongoDB adapter
+ GET /account 200 in 68ms
+ GET /api/user/profile 404 in 133ms
+ GET /api/orders/user 404 in 165ms
+ ○ Compiling /api/categories ...
+ ✓ Compiled /api/categories in 4.8s (1410 modules)
+🍃 Using MongoDB adapter
+Categories API error: Error [PrismaClientInitializationError]: 
+Invalid `prisma.category.findMany()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `file:`.
+  -->  schema.prisma:13
+   | 
+12 |   provider = "sqlite"
+13 |   url      = env("DATABASE_URL")
+   | 
+
+Validation Error Count: 1
+    at <unknown> (-->  schema.prisma:13)
+    at async GET (src\app\api\categories\route.ts:17:24)
+  15 |     }
+  16 |
+> 17 |     const categories = await db.category.findMany({
+     |                        ^
+  18 |       where,
+  19 |       include: {
+  20 |         parent: { {
+  clientVersion: '6.17.1',
+  errorCode: undefined,
+  retryable: undefined
+}
+Products API error: Error [PrismaClientInitializationError]: 
+Invalid `prisma.product.findMany()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `file:`.
+  -->  schema.prisma:13
+   | 
+12 |   provider = "sqlite"
+13 |   url      = env("DATABASE_URL")
+   | 
+
+Validation Error Count: 1
+    at <unknown> (-->  schema.prisma:13)
+    at async GET (src\app\api\products\route.ts:45:22)
+  43 |
+  44 |     // Get products
+> 45 |     const products = await db.product.findMany({
+     |                      ^
+  46 |       where,
+  47 |       include: {
+  48 |         category: { {
+  clientVersion: '6.17.1',
+  errorCode: undefined,
+  retryable: undefined
+}
+ GET /api/categories?includeInactive=true 500 in 6923ms
+ GET /api/products?includeInactive=true&limit=100 500 in 6936ms
+ ○ Compiling /admin ...
+ ✓ Compiled /admin in 5s (1088 modules)
+ GET /admin 200 in 6705ms
+ ○ Compiling /api/auth/[...nextauth] ...
+ ✓ Compiled /api/auth/[...nextauth] in 887ms (943 modules)
+🍃 Using MongoDB adapter
+ GET /api/auth/session 200 in 2091ms
+🍃 Using MongoDB adapter
+ ○ Compiling /admin/products/new ...
+ ✓ Compiled /admin/products/new in 1846ms (1411 modules)
+ GET /admin/products/new 200 in 4368ms
+🍃 Using MongoDB adapter
+ GET /api/auth/session 200 in 607ms
+🍃 Using MongoDB adapter
+ ○ Compiling /api/categories ...
+ ✓ Compiled /api/categories in 1566ms (962 modules)
+ ✓ Compiled (964 modules)
+🍃 Using MongoDB adapter
+Categories API error: Error [PrismaClientInitializationError]: 
+Invalid `prisma.category.findMany()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `file:`.
+  -->  schema.prisma:13
+   | 
+12 |   provider = "sqlite"
+13 |   url      = env("DATABASE_URL")
+   | 
+
+Validation Error Count: 1
+    at <unknown> (-->  schema.prisma:13)
+    at async GET (src\app\api\categories\route.ts:17:24)
+  15 |     }
+  16 |
+> 17 |     const categories = await db.category.findMany({
+     |                        ^
+  18 |       where,
+  19 |       include: {
+  20 |         parent: { {
+  clientVersion: '6.17.1',
+  errorCode: undefined,
+  retryable: undefined
+}
+Products API error: Error [PrismaClientInitializationError]: 
+Invalid `prisma.product.findMany()` invocation:
+
+
+error: Error validating datasource `db`: the URL must start with the protocol `file:`.
+  -->  schema.prisma:13
+   | 
+12 |   provider = "sqlite"
+13 |   url      = env("DATABASE_URL")
+   | 
+
+Validation Error Count: 1
+    at <unknown> (-->  schema.prisma:13)
+    at async GET (src\app\api\products\route.ts:45:22)
+  43 |
+  44 |     // Get products
+> 45 |     const products = await db.product.findMany({
+     |                      ^
+  46 |       where,
+  47 |       include: {
+  48 |         category: { {
+  clientVersion: '6.17.1',
+  errorCode: undefined,
+  retryable: undefined
+}
+ GET /api/categories?includeInactive=true 500 in 6109ms
+ GET /api/products?includeInactive=true&limit=100 500 in 6118ms
+ GET /admin/products/new 200 in 1069ms
+ GET /api/auth/session 200 in 154ms
+🍃 Using MongoDB adapter
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+ ○ Compiling / ...
+ ✓ Compiled / in 7.9s (971 modules)
+ GET / 200 in 12688ms
+ ○ Compiling /favicon.ico ...
+ ✓ Compiled /api/auth/[...nextauth] in 1931ms (580 modules)
+ ✓ Compiled in 4s (395 modules)
+🍃 Using MongoDB adapter
+ GET /favicon.ico 200 in 13187ms
+ ○ Compiling /login ...
+ ✓ Compiled /login in 3.8s (1331 modules)
+ GET /login 200 in 5153ms
+🍃 Using MongoDB adapter
+🍃 Using MongoDB adapter
+ GET /api/auth/providers 200 in 1776ms
+ GET /api/auth/session 200 in 22662ms
+ GET /api/auth/csrf 200 in 111ms
+✅ Connected to MongoDB successfully
+ POST /api/auth/callback/credentials 200 in 678ms
+ GET /api/auth/session 200 in 128ms
+ GET / 200 in 479ms
+ GET / 200 in 292ms
+🍃 Using MongoDB adapter
+ ○ Compiling /admin ...
+ ✓ Compiled /admin in 4.1s (1390 modules)
+ GET /admin 200 in 6753ms
+🍃 Using MongoDB adapter
+ GET /api/auth/session 200 in 1353ms
+🍃 Using MongoDB adapter
+ ○ Compiling /admin/products/new ...
+ ✓ Compiled /admin/products/new in 3.6s (1403 modules)
+ GET /admin/products/new 200 in 5302ms
+🍃 Using MongoDB adapter
+ GET /api/auth/session 200 in 606ms
+🍃 Using MongoDB adapter
+ ○ Compiling /api/products ...
+ ✓ Compiled /api/products in 3.1s (1401 modules)
+🍃 Using MongoDB adapter
+ POST /api/products 400 in 4243ms
+ POST /api/products 400 in 84ms
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+ ○ Compiling /login ...
+ ✓ Compiled /login in 11.9s (973 modules)
+ GET /login 200 in 14097ms
+ ○ Compiling /api/auth/[...nextauth] ...
+ ✓ Compiled /api/auth/[...nextauth] in 4.6s (1276 modules)
+🍃 Using MongoDB adapter
+🍃 Using MongoDB adapter
+ GET /api/auth/providers 200 in 14741ms
+ GET /api/auth/csrf 200 in 67ms
+✅ Connected to MongoDB successfully
+ POST /api/auth/callback/credentials 200 in 404ms
+ GET /api/auth/session 200 in 82ms
+ ○ Compiling / ...
+ ✓ Compiled / in 2.6s (1317 modules)
+ GET / 200 in 5713ms
+ GET / 200 in 853ms
+🍃 Using MongoDB adapter
+ ○ Compiling /admin ...
+ ✓ Compiled /admin in 3.5s (1376 modules)
+ GET /admin 200 in 5047ms
+🍃 Using MongoDB adapter
+ GET /api/auth/session 200 in 801ms
+ ○ Compiling /admin/products/new ...
+ ✓ Compiled /admin/products/new in 3.9s (1389 modules)
+🍃 Using MongoDB adapter
+ GET /admin/products/new 200 in 5767ms
+🍃 Using MongoDB adapter
+ GET /api/auth/session 200 in 659ms
+🍃 Using MongoDB adapter
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 2.4s (1353 modules)
+ GET /sourceMap/assets/css/shadow.css.map 404 in 4086ms
+ GET /sourceMap/assets/css/shadow.css.map 404 in 207ms
+ ⨯ [Error: Body exceeded 1 MB limit.
+To configure the body size limit for Server Actions, see: https://nextjs.org/docs/app/api-reference/next-config-js/serverActions#bodysizelimit] {
+  statusCode: 413
+}
+ ⨯ [Error: Body exceeded 1 MB limit.
+To configure the body size limit for Server Actions, see: https://nextjs.org/docs/app/api-reference/next-config-js/serverActions#bodysizelimit] {
+  statusCode: 413
+}
+ ⨯ [Error: Body exceeded 1 MB limit.
+To configure the body size limit for Server Actions, see: https://nextjs.org/docs/app/api-reference/next-config-js/serverActions#bodysizelimit] {
+  statusCode: 413
+}
+ ⨯ [Error: Body exceeded 1 MB limit.
+To configure the body size limit for Server Actions, see: https://nextjs.org/docs/app/api-reference/next-config-js/serverActions#bodysizelimit] {
+  statusCode: 413
+}
+ ⨯ [Error: Body exceeded 1 MB limit.
+To configure the body size limit for Server Actions, see: https://nextjs.org/docs/app/api-reference/next-config-js/serverActions#bodysizelimit] {
+  statusCode: 413
+}
+ ⨯ [Error: Body exceeded 1 MB limit.
+To configure the body size limit for Server Actions, see: https://nextjs.org/docs/app/api-reference/next-config-js/serverActions#bodysizelimit] {
+  statusCode: 413
+}
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 7.5s (1377 modules)
+ GET /admin/products/new 200 in 7765ms
+ POST /api/upload 500 in 40914ms
+ POST /api/upload 500 in 40925ms
+ POST /api/upload 500 in 35342ms
+ GET /admin/products/new 200 in 1962ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'D:\ostad batch 6\next-ecommerce\.next\cache\webpack\client-development-fallback\0.pack.gz_' -> 'D:\ostad batch 6\next-ecommerce\.next\cache\webpack\client-development-fallback\0.pack.gz'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'D:\ostad batch 6\next-ecommerce\.next\cache\webpack\client-development-fallback\0.pack.gz_' -> 'D:\ostad batch 6\next-ecommerce\.next\cache\webpack\client-development-fallback\0.pack.gz'
