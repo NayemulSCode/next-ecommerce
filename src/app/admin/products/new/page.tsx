@@ -1,5 +1,6 @@
 "use client";
 
+import { ImageUpload } from "@/components/admin/image-upload";
 import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
 import { Button } from "@/components/ui/button";
@@ -16,7 +17,7 @@ import {
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { ArrowLeft, Upload } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -26,11 +27,12 @@ export default function NewProductPage() {
   const router = useRouter();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
-  const [files, setFiles] = useState<File[]>([]);
+
   const [formData, setFormData] = useState({
     name: "",
     description: "",
     shortDesc: "",
+    slug: "",
     sku: "",
     price: "",
     comparePrice: "",
@@ -43,45 +45,21 @@ export default function NewProductPage() {
     images: [] as string[],
     tags: "",
   });
-
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      const selectedFiles = Array.from(e.target.files);
-      setFiles((prev) => [...prev, ...selectedFiles]);
-    }
-  };
-
-  const removeImage = (index: number) => {
-    setFiles((prev) => prev.filter((_, i) => i !== index));
+  console.log("🚀 ~ NewProductPage ~ formData:", formData);
+  // generate slug
+  const generateSlug = (name: string) => {
+    console.log("🚀 ~ generateSlug ~ name:", name);
+    return name
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/(^-|-$)/g, "");
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
 
-    let uploadedImageUrls: string[] = [];
-
     try {
-      // Upload images if any
-      if (files.length > 0) {
-        const uploadPromises = files.map(async (file) => {
-          const formData = new FormData();
-          formData.append("file", file);
-
-          const res = await fetch("/api/upload", {
-            method: "POST",
-            body: formData,
-          });
-
-          if (!res.ok) throw new Error("Image upload failed");
-          const data = await res.json();
-          return data.url; // Expect { url: "https://..." }
-        });
-
-        uploadedImageUrls = await Promise.all(uploadPromises);
-      }
-
-      // Submit product with image URLs
       const response = await fetch("/api/products", {
         method: "POST",
         headers: {
@@ -89,13 +67,14 @@ export default function NewProductPage() {
         },
         body: JSON.stringify({
           ...formData,
+          // slug: generateSlug(formData.name),
           price: parseFloat(formData.price),
           comparePrice: formData.comparePrice
             ? parseFloat(formData.comparePrice)
             : null,
           cost: formData.cost ? parseFloat(formData.cost) : null,
           quantity: parseInt(formData.quantity),
-          images: uploadedImageUrls, // ✅ Now an array of URLs
+          images: JSON.stringify(formData.images),
           tags: formData.tags
             .split(",")
             .map((tag) => tag.trim())
@@ -113,7 +92,6 @@ export default function NewProductPage() {
         throw new Error("Failed to create product");
       }
     } catch (error) {
-      console.error(error);
       toast({
         title: "Error",
         description: "Failed to create product. Please try again.",
@@ -122,6 +100,15 @@ export default function NewProductPage() {
     } finally {
       setIsLoading(false);
     }
+  };
+  // slug
+  const handleNameChange = (name: string) => {
+    console.log("🚀 ~ handleNameChange ~ name:", name);
+    setFormData((prev) => ({
+      ...prev,
+      name,
+      slug: generateSlug(name),
+    }));
   };
 
   if (!session || session.user.role !== "ADMIN") {
@@ -171,12 +158,13 @@ export default function NewProductPage() {
                     <Input
                       id="name"
                       value={formData.name}
-                      onChange={(e) =>
-                        setFormData((prev) => ({
-                          ...prev,
-                          name: e.target.value,
-                        }))
-                      }
+                      onChange={(e) => {
+                        // setFormData((prev) => ({
+                        //   ...prev,
+                        //   name: e.target.value,
+                        // }));
+                        handleNameChange(e.target.value);
+                      }}
                       required
                     />
                   </div>
@@ -400,53 +388,14 @@ export default function NewProductPage() {
                 <CardTitle>Product Images</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
-                  {/* File Input (Hidden) */}
-                  <input
-                    type="file"
-                    id="image-upload"
-                    className="hidden"
-                    multiple
-                    accept="image/*"
-                    onChange={handleImageUpload}
-                  />
-
-                  {/* Upload Area */}
-                  <label
-                    htmlFor="image-upload"
-                    className="flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-lg p-8 text-center cursor-pointer hover:bg-muted transition-colors"
-                  >
-                    <Upload className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                    <p className="text-gray-600 mb-2">
-                      Click to upload or drag and drop
-                    </p>
-                    <p className="text-sm text-gray-500">
-                      PNG, JPG, GIF up to 10MB
-                    </p>
-                  </label>
-
-                  {/* Image Previews */}
-                  {files.length > 0 && (
-                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mt-4">
-                      {files.map((file, index) => (
-                        <div key={index} className="relative group">
-                          <img
-                            src={URL.createObjectURL(file)}
-                            alt={`preview-${index}`}
-                            className="w-full h-24 object-cover rounded border"
-                          />
-                          <button
-                            type="button"
-                            onClick={() => removeImage(index)}
-                            className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
-                          >
-                            &times;
-                          </button>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
+                <ImageUpload
+                  value={formData.images}
+                  onChange={(urls) =>
+                    setFormData((prev) => ({ ...prev, images: urls }))
+                  }
+                  maxFiles={5}
+                  maxSize={10 * 1024 * 1024} // 10MB
+                />
               </CardContent>
             </Card>
 

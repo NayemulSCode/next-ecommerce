@@ -1,12 +1,14 @@
+// app/api/products/route.ts
 import { authOptions } from "@/lib/auth/config";
-import { db } from "@/lib/db";
+import { dbAdapter } from "@/lib/database-adapter";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 
-// GET - 获取产品列表
-export async function GET(request: NextRequest) {
+// ✅ GET: Fetch products with filters, search, pagination
+export async function GET(req: NextRequest) {
   try {
-    const { searchParams } = new URL(request.url);
+    const { searchParams } = new URL(req.url);
+
     const category = searchParams.get("category");
     const featured = searchParams.get("featured");
     const search = searchParams.get("search");
@@ -15,68 +17,46 @@ export async function GET(request: NextRequest) {
     const skip = (page - 1) * limit;
     const includeInactive = searchParams.get("includeInactive") === "true";
 
-    // Build where clause
-    const where: any = {};
-
-    if (!includeInactive) {
-      where.isActive = true;
-      where.status = "ACTIVE";
-    }
-
-    if (category) {
-      where.category = {
-        slug: category,
-      };
-    }
-
-    if (featured === "true") {
-      where.featured = true;
-    }
+    // 🧠 Build filter object
+    const filter: any = {};
+    if (!includeInactive) filter.status = "ACTIVE";
+    if (featured === "true") filter.featured = true;
 
     if (search) {
-      where.OR = [
-        { name: { contains: search, mode: "insensitive" } },
-        { description: { contains: search, mode: "insensitive" } },
-        { shortDesc: { contains: search, mode: "insensitive" } },
+      filter.$or = [
+        { name: { $regex: search, $options: "i" } },
+        { description: { $regex: search, $options: "i" } },
+        { shortDesc: { $regex: search, $options: "i" } },
       ];
     }
 
-    // Get products
-    const products = await db.product.findMany({
-      where,
-      include: {
-        category: {
-          select: {
-            name: true,
-            slug: true,
-          },
-        },
-      },
-      orderBy: {
-        createdAt: "desc",
-      },
+    // If category is provided, find category by slug
+    if (category) {
+      const categoryDoc = await dbAdapter.getCategoryBySlug(category);
+      if (categoryDoc) {
+        filter.categoryId = categoryDoc.id;
+      } else {
+        return NextResponse.json({
+          products: [],
+          pagination: { page, limit, total: 0, pages: 0 },
+        });
+      }
+    }
+
+    // 🧩 Fetch products via adapter
+    const products = await dbAdapter.getProducts(filter, {
+      sort: { createdAt: -1 },
       skip,
-      take: limit,
+      limit,
     });
 
-    // Get total count for pagination
-    const total = await db.product.count({ where });
-
-    // Transform products to include parsed images and tags
-    const transformedProducts = products.map((product) => ({
-      ...product,
-      images: product.images ? JSON.parse(product.images) : [],
-      tags: product.tags ? JSON.parse(product.tags) : [],
-    }));
+    // Get total for pagination
+    const totalProducts = (await dbAdapter.getProducts(filter)).length;
+    const pages = Math.ceil(totalProducts / limit);
 
     return NextResponse.json({
-      products: transformedProducts,
-      pagination: {
-        page,
-        limit,
-        total,
-        pages: Math.ceil(total / limit),
-      },
+      products,
+      pagination: { page, limit, total: totalProducts, pages },
     });
   } catch (error) {
     console.error("Products API error:", error);
@@ -87,12 +67,10 @@ export async function GET(request: NextRequest) {
   }
 }
 
-// POST - 创建新产品 (仅管理员)
-export async function POST(request: NextRequest) {
+// ✅ POST: Create new product (Admin only)
+export async function POST(req: NextRequest) {
   try {
     const session = await getServerSession(authOptions);
-
-    // 检查权限
     if (!session?.user || session.user.role !== "ADMIN") {
       return NextResponse.json(
         { error: "Unauthorized. Admin access required." },
@@ -100,73 +78,52 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const body = await request.json();
+    const body = await req.json();
+    console.log("🚀 ~ POST ~ body:", body);
 
-    // 验证必需字段
+    // Basic validation
     const requiredFields = ["name", "slug", "sku", "price", "categoryId"];
-    const missingFields = requiredFields.filter((field) => !body[field]);
-
-    if (missingFields.length > 0) {
+    const missing = requiredFields.filter((f) => !body[f]);
+    if (missing.length > 0) {
       return NextResponse.json(
-        { error: `Missing required fields: ${missingFields.join(", ")}` },
+        { error: `Missing required fields: ${missing.join(", ")}` },
         { status: 400 }
       );
     }
 
-    // 检查 SKU 是否已存在
-    const existingProduct = await db.product.findUnique({
-      where: { sku: body.sku },
-    });
-
-    if (existingProduct) {
+    // Check duplicate SKU or slug
+    const existingBySku = await dbAdapter.getProducts({ sku: body.sku });
+    if (existingBySku.length > 0) {
       return NextResponse.json(
         { error: "Product with this SKU already exists" },
         { status: 409 }
       );
     }
 
-    // 检查 Slug 是否已存在
-    const existingSlug = await db.product.findUnique({
-      where: { slug: body.slug },
-    });
-
-    if (existingSlug) {
+    const existingBySlug = await dbAdapter.getProductBySlug(body.slug);
+    if (existingBySlug) {
       return NextResponse.json(
         { error: "Product with this slug already exists" },
         { status: 409 }
       );
     }
 
-    // 创建产品
-    const product = await db.product.create({
-      data: {
-        ...body,
-        images: JSON.stringify(body.images || []),
-        tags: JSON.stringify(body.tags || []),
-        price: parseFloat(body.price),
-        comparePrice: body.comparePrice ? parseFloat(body.comparePrice) : null,
-        cost: body.cost ? parseFloat(body.cost) : null,
-        quantity: parseInt(body.quantity) || 0,
-        weight: body.weight ? parseFloat(body.weight) : null,
-      },
-      include: {
-        category: {
-          select: {
-            name: true,
-            slug: true,
-          },
-        },
-      },
+    // Create product
+    const product = await dbAdapter.createProduct({
+      ...body,
+      price: parseFloat(body.price),
+      comparePrice: body.comparePrice
+        ? parseFloat(body.comparePrice)
+        : undefined,
+      cost: body.cost ? parseFloat(body.cost) : undefined,
+      quantity: parseInt(body.quantity) || 0,
+      status: body.status || "ACTIVE",
+      featured: body.featured || false,
+      createdAt: new Date(),
+      updatedAt: new Date(),
     });
 
-    // 转换响应数据
-    const transformedProduct = {
-      ...product,
-      images: product.images ? JSON.parse(product.images) : [],
-      tags: product.tags ? JSON.parse(product.tags) : [],
-    };
-
-    return NextResponse.json(transformedProduct, { status: 201 });
+    return NextResponse.json(product, { status: 201 });
   } catch (error) {
     console.error("Create product error:", error);
     return NextResponse.json(

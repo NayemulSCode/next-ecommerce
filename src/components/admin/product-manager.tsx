@@ -1,5 +1,6 @@
 "use client";
 
+import { ImageUpload } from "@/components/admin/image-upload";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -530,6 +531,18 @@ export function ProductManager() {
                       }
                       placeholder="Detailed product description"
                       rows={4}
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label>Product Images</Label>
+                    <ImageUpload
+                      value={formData.images}
+                      onChange={(urls) =>
+                        setFormData((prev) => ({ ...prev, images: urls }))
+                      }
+                      maxFiles={5}
+                      maxSize={10 * 1024 * 1024}
                     />
                   </div>
 
