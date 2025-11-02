@@ -1,10 +1,45 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { db } from '@/lib/db'
-import ZAI from 'z-ai-web-dev-sdk'
+// app/api/orders/route.ts
+import { createDatabaseAdapter } from "@/lib/database-adapter";
+import { COLLECTIONS } from "@/types/mongodb";
+import { NextRequest, NextResponse } from "next/server";
+import ZAI from "z-ai-web-dev-sdk";
+
+const dbAdapter = createDatabaseAdapter();
+
+// export async function POST(req: NextRequest) {
+//   try {
+//     const body = await req.json();
+
+//     const { userId, items, total, shippingInfo, paymentMethod, status } = body;
+
+//     const db = await dbAdapter();
+//     const orders = db.collection(COLLECTIONS.ORDERS);
+
+//     const newOrder = {
+//       userId: new ObjectId(userId),
+//       items,
+//       total,
+//       shippingInfo,
+//       paymentMethod,
+//       status: status || "pending",
+//       createdAt: new Date(),
+//     };
+
+//     const result = await orders.insertOne(newOrder);
+
+//     return NextResponse.json({ success: true, orderId: result.insertedId });
+//   } catch (error) {
+//     console.error(error);
+//     return NextResponse.json(
+//       { success: false, error: "Order creation failed" },
+//       { status: 500 }
+//     );
+//   }
+// }
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json()
+    const body = await request.json();
     const {
       items,
       shippingAddress,
@@ -15,166 +50,170 @@ export async function POST(request: NextRequest) {
       total,
       notes,
       guestEmail,
-      userId
-    } = body
+      userId,
+    } = body;
 
     // Generate unique order number
-    const orderNumber = `ORD-${Date.now()}-${Math.random().toString(36).substr(2, 4).toUpperCase()}`
+    const orderNumber = `ORD-${Date.now()}-${Math.random()
+      .toString(36)
+      .substr(2, 4)
+      .toUpperCase()}`;
 
-    // Create order
-    const order = await db.order.create({
-      data: {
-        orderNumber,
-        userId,
-        guestEmail,
-        status: 'PENDING',
-        paymentStatus: 'PENDING',
-        paymentMethod,
-        subtotal,
-        tax,
-        shipping,
-        total,
-        notes,
-        addressId: shippingAddress.id
-      },
-      include: {
-        items: true,
-        address: true
-      }
-    })
+    const service = await (dbAdapter as any).getService();
 
-    // Create order items
+    // ✅ 1️⃣ Create order
+    const order = await service.create(COLLECTIONS.ORDERS, {
+      orderNumber,
+      userId,
+      guestEmail,
+      status: "PENDING",
+      paymentStatus: "PENDING",
+      paymentMethod,
+      subtotal,
+      tax,
+      shipping,
+      total,
+      notes,
+      address: shippingAddress,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    });
+
+    // ✅ 2️⃣ Create order items & update stock
     for (const item of items) {
-      await db.orderItem.create({
-        data: {
-          orderId: order.id,
-          productId: item.productId,
-          quantity: item.quantity,
-          price: item.price,
-          total: item.price * item.quantity
-        }
-      })
+      await service.create(COLLECTIONS.ORDER_ITEMS, {
+        orderId: order._id.toString(),
+        productId: item.productId,
+        name: item.name,
+        quantity: item.quantity,
+        price: item.price,
+        total: item.price * item.quantity,
+      });
 
       // Update product stock
-      await db.product.update({
-        where: { id: item.productId },
-        data: {
-          quantity: {
-            decrement: item.quantity
-          }
-        }
-      })
+      await service.updateMany(
+        COLLECTIONS.PRODUCTS,
+        // { _id: new ObjectId(item.productId) }, //replace when react product id available
+        { _id: item.productId },
+        { $inc: { quantity: -item.quantity } } // decrement stock
+      );
     }
 
-    // Send confirmation email using ZAI
+    // ✅ 3️⃣ Send confirmation email (mock)
     try {
-      const zai = await ZAI.create()
-      
+      const zai = await ZAI.create();
       const emailContent = `
         Order Confirmation - ${orderNumber}
-        
+
         Thank you for your order!
-        
+
         Order Details:
         - Order Number: ${orderNumber}
         - Total: $${total}
         - Payment Method: ${paymentMethod}
-        - Shipping Address: ${shippingAddress.address1}, ${shippingAddress.city}, ${shippingAddress.province}
-        
-        Items:
-        ${items.map(item => `- ${item.name} x${item.quantity} - $${item.price}`).join('\n')}
-        
-        We'll send you another email when your order ships.
-        
-        Thank you for shopping with us!
-      `
+        - Shipping Address: ${shippingAddress.address1}, ${
+        shippingAddress.city
+      }, ${shippingAddress.province}
 
-      // In a real implementation, you would use ZAI to send this email
-      console.log('Email content generated:', emailContent)
-      
+        Items:
+        ${items
+          .map(
+            (item: any) => `- ${item.name} x${item.quantity} - $${item.price}`
+          )
+          .join("\n")}
+      `;
+
+      console.log("📧 Email content generated:", emailContent);
     } catch (emailError) {
-      console.error('Failed to send confirmation email:', emailError)
-      // Don't fail the order if email fails
+      console.error("⚠️ Failed to send confirmation email:", emailError);
     }
 
     return NextResponse.json({
       success: true,
       order: {
-        id: order.id,
+        id: order._id.toString(),
         orderNumber: order.orderNumber,
         status: order.status,
-        total: order.total
-      }
-    })
+        total: order.total,
+      },
+    });
   } catch (error) {
-    console.error('Create order error:', error)
+    console.error("❌ Create order error:", error);
     return NextResponse.json(
-      { error: 'Failed to create order' },
+      { error: "Failed to create order" },
       { status: 500 }
-    )
+    );
   }
 }
 
 export async function GET(request: NextRequest) {
   try {
-    const { searchParams } = new URL(request.url)
-    const userId = searchParams.get('userId')
-    const page = parseInt(searchParams.get('page') || '1')
-    const limit = parseInt(searchParams.get('limit') || '10')
-    const skip = (page - 1) * limit
+    const { searchParams } = new URL(request.url);
+    const userId = searchParams.get("userId");
+    const page = parseInt(searchParams.get("page") || "1");
+    const limit = parseInt(searchParams.get("limit") || "10");
+    const skip = (page - 1) * limit;
 
-    const where = userId ? { userId } : {}
+    const service = await (dbAdapter as any).getService();
+    const filter = userId ? { userId } : {};
 
-    const orders = await db.order.findMany({
-      where,
-      include: {
-        items: {
-          include: {
-            product: {
-              select: {
-                name: true,
-                images: true
-              }
-            }
-          }
-        },
-        address: true
-      },
-      orderBy: {
-        createdAt: 'desc'
-      },
+    // ✅ 1️⃣ Get orders
+    const orders = await service.findMany(COLLECTIONS.ORDERS, filter, {
+      sort: { createdAt: -1 },
       skip,
-      take: limit
-    })
+      limit,
+    });
 
-    const total = await db.order.count({ where })
+    // ✅ 2️⃣ Count total
+    const total = await service.count(COLLECTIONS.ORDERS, filter);
 
-    // Transform orders to include parsed images
-    const transformedOrders = orders.map(order => ({
-      ...order,
-      items: order.items.map(item => ({
-        ...item,
-        product: {
-          ...item.product,
-          images: item.product.images ? JSON.parse(item.product.images) : []
-        }
-      }))
-    }))
+    // ✅ 3️⃣ Attach items and products
+    const ordersWithItems = await Promise.all(
+      orders.map(async (order: any) => {
+        const orderItems = await service.findMany(COLLECTIONS.ORDER_ITEMS, {
+          orderId: order._id.toString(),
+        });
+
+        const itemsWithProducts = await Promise.all(
+          orderItems.map(async (item: any) => {
+            const product = await service.findById(
+              COLLECTIONS.PRODUCTS,
+              item.productId
+            );
+            return {
+              ...item,
+              product: product
+                ? {
+                    name: product.name,
+                    images: product.images ? JSON.parse(product.images) : [],
+                  }
+                : null,
+            };
+          })
+        );
+
+        return {
+          ...order,
+          id: order._id.toString(),
+          items: itemsWithProducts,
+        };
+      })
+    );
 
     return NextResponse.json({
-      orders: transformedOrders,
+      orders: ordersWithItems,
       pagination: {
         page,
         limit,
         total,
-        pages: Math.ceil(total / limit)
-      }
-    })
+        pages: Math.ceil(total / limit),
+      },
+    });
   } catch (error) {
-    console.error('Get orders error:', error)
+    console.error("❌ Get orders error:", error);
     return NextResponse.json(
-      { error: 'Failed to fetch orders' },
+      { error: "Failed to fetch orders" },
       { status: 500 }
-    )
+    );
   }
 }

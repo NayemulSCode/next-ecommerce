@@ -1,12 +1,13 @@
 "use client";
 
-import Link from "next/link";
-import { Star, Heart, ShoppingCart } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { useCartStore } from "@/store/cart";
 import { cn } from "@/lib/utils";
+import { useCartStore } from "@/store/cart";
+import { Heart, ShoppingCart, Star } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 interface Product {
   id: string;
@@ -197,6 +198,12 @@ export function ProductGrid({
                   <Link href={`/product/${product.id}`}>
                     <div className="relative w-full h-48 bg-gray-100 overflow-hidden">
                       <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+                        <Image
+                          src={product.image}
+                          height={300}
+                          width={300}
+                          alt="product"
+                        />
                         <span className="text-gray-400 text-xs">
                           Product Image
                         </span>

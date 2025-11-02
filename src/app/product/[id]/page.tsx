@@ -1,26 +1,26 @@
 "use client";
 
-import { useState } from "react";
-import { useParams } from "next/navigation";
-import Link from "next/link";
-import {
-  Star,
-  Heart,
-  Share2,
-  Truck,
-  Shield,
-  RefreshCw,
-  Minus,
-  Plus,
-} from "lucide-react";
+import { Footer } from "@/components/layout/footer";
+import { Navbar } from "@/components/layout/navbar";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useCartStore } from "@/store/cart";
-import { Navbar } from "@/components/layout/navbar";
-import { Footer } from "@/components/layout/footer";
+import {
+  Heart,
+  Minus,
+  Plus,
+  RefreshCw,
+  Share2,
+  Shield,
+  Star,
+  Truck,
+} from "lucide-react";
+import Link from "next/link";
+import { useParams } from "next/navigation";
+import { useState } from "react";
 
 // Mock product data - in real app, fetch from API based on id
 const mockProduct = {

@@ -1,12 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
-import { CreditCard, Truck, Shield, ArrowLeft, ArrowRight } from "lucide-react";
+import { Footer } from "@/components/layout/footer";
+import { Navbar } from "@/components/layout/navbar";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -19,15 +15,17 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Separator } from "@/components/ui/separator";
-import { Badge } from "@/components/ui/badge";
-import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Textarea } from "@/components/ui/textarea";
 import { useCartStore } from "@/store/cart";
-import { PaymentForm } from "@/components/stripe/payment-form";
-import { Navbar } from "@/components/layout/navbar";
-import { Footer } from "@/components/layout/footer";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { ArrowLeft, ArrowRight, CreditCard, Shield, Truck } from "lucide-react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
 
 // Form validation schema
 const shippingAddressSchema = z.object({
@@ -103,24 +101,39 @@ export default function CheckoutPage() {
 
   const onSubmit = async (data: CheckoutFormData) => {
     setIsProcessing(true);
-
     try {
-      // Simulate order processing
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      const res = await fetch("/api/orders", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          userId: "someUserIdHere", // later from auth
+          items,
+          total,
+          shippingInfo: {
+            firstName: data.firstName,
+            lastName: data.lastName,
+            email: data.email,
+            phone: data.phone,
+            address1: data.address1,
+            address2: data.address2,
+            city: data.city,
+            province: data.province,
+            country: data.country,
+            postalCode: data.postalCode,
+            notes: data.notes,
+          },
+          paymentMethod: data.paymentMethod,
+        }),
+      });
 
-      // In a real app, this would:
-      // 1. Create order in database
-      // 2. Process payment with Stripe
-      // 3. Send confirmation email
-      // 4. Clear cart
+      const result = await res.json();
+      if (!result.success) throw new Error(result.error);
 
-      console.log("Order data:", { ...data, items, total });
-
-      // Clear cart and redirect to success page
+      // Clear cart + redirect
       clearCart();
-      router.push("/order-confirmation");
-    } catch (error) {
-      console.error("Checkout error:", error);
+      router.push(`/order-confirmation/${result.order.id}`);
+    } catch (err) {
+      console.error(err);
     } finally {
       setIsProcessing(false);
     }
