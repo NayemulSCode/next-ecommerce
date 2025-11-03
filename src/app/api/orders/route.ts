@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const {
       items,
-      shippingInfo,
+      shippingAddress,
       paymentMethod,
       subtotal,
       tax,
@@ -50,7 +50,7 @@ export async function POST(request: NextRequest) {
       shipping,
       total,
       notes,
-      address: shippingInfo,
+      address: shippingAddress,
       createdAt: new Date(),
       updatedAt: new Date(),
     });
@@ -77,8 +77,8 @@ export async function POST(request: NextRequest) {
 
     // ✅ 3️⃣ Send confirmation email (mock)
     try {
-      const customerEmail = shippingInfo?.email;
-      // const customerEmail = guestEmail || userId || shippingInfo?.email;
+      const customerEmail = shippingAddress?.email;
+      // const customerEmail = guestEmail || userId || shippingAddress?.email;
       console.log("🚀 ~ POST ~ customerEmail:", customerEmail);
 
       await transporter.sendMail({
@@ -90,7 +90,7 @@ export async function POST(request: NextRequest) {
           items,
           total,
           paymentMethod,
-          shippingInfo,
+          shippingAddress,
           subtotal,
           tax,
           shipping
@@ -127,7 +127,7 @@ function generateOrderEmailHTML(
   items: any[],
   total: number,
   paymentMethod: string,
-  shippingInfo: any,
+  shippingAddress: any,
   subtotal: number,
   tax: number,
   shipping: number
@@ -192,12 +192,16 @@ function generateOrderEmailHTML(
           <div style="background-color: #fff; padding: 20px; border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 20px;">
             <h2 style="color: #1f2937; font-size: 18px; margin-top: 0;">📦 Shipping Address</h2>
             <p style="margin: 5px 0; line-height: 1.8;">
-              ${shippingInfo.address1}<br>
-              ${shippingInfo.address2 ? `${shippingInfo.address2}<br>` : ""}
-              ${shippingInfo.city}, ${shippingInfo.province} ${
-    shippingInfo.postalCode
+              ${shippingAddress.address1}<br>
+              ${
+                shippingAddress.address2
+                  ? `${shippingAddress.address2}<br>`
+                  : ""
+              }
+              ${shippingAddress.city}, ${shippingAddress.province} ${
+    shippingAddress.postalCode
   }<br>
-              ${shippingInfo.country}
+              ${shippingAddress.country}
             </p>
           </div>
 

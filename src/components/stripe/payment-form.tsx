@@ -1,17 +1,17 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { loadStripe } from "@stripe/stripe-js";
-import { Elements } from "@stripe/react-stripe-js";
-import {
-  PaymentElement,
-  useStripe,
-  useElements,
-} from "@stripe/react-stripe-js";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Alert, AlertDescription } from "@/components/ui/alert";
+import {
+  Elements,
+  PaymentElement,
+  useElements,
+  useStripe,
+} from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 import { Loader2 } from "lucide-react";
+import { useState } from "react";
 
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
@@ -35,35 +35,6 @@ function PaymentFormContent({
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<string>("");
 
-  useEffect(() => {
-    if (!stripe) return;
-
-    const clientSecretParam = new URLSearchParams(window.location.search).get(
-      "payment_intent_client_secret"
-    );
-
-    if (clientSecretParam) {
-      stripe
-        .retrievePaymentIntent(clientSecretParam)
-        .then(({ paymentIntent }) => {
-          switch (paymentIntent?.status) {
-            case "succeeded":
-              setMessage("Payment succeeded!");
-              break;
-            case "processing":
-              setMessage("Your payment is processing.");
-              break;
-            case "requires_payment_method":
-              setMessage("Your payment was not successful, please try again.");
-              break;
-            default:
-              setMessage("Something went wrong.");
-              break;
-          }
-        });
-    }
-  }, [stripe]);
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -72,34 +43,34 @@ function PaymentFormContent({
     }
 
     setIsLoading(true);
+    setMessage("");
 
-    const { error } = await stripe.confirmPayment({
-      elements,
-      confirmParams: {
-        return_url: `${window.location.origin}/order-confirmation`,
-      },
-      redirect: "if_required",
-    });
+    try {
+      // ✅ Confirm the payment
+      const { error, paymentIntent } = await stripe.confirmPayment({
+        elements,
+        redirect: "if_required",
+      });
 
-    if (error) {
-      if (error.type === "card_error" || error.type === "validation_error") {
+      if (error) {
+        // Payment failed
         setMessage(error.message || "An unexpected error occurred.");
-      } else {
-        setMessage("An unexpected error occurred.");
+        onPaymentError(error.message || "Payment failed");
+        setIsLoading(false);
+        return;
       }
-      onPaymentError(error.message || "Payment failed");
-    } else {
-      // Payment successful, create order
-      try {
+
+      // ✅ Payment successful - Now create the order
+      if (paymentIntent && paymentIntent.status === "succeeded") {
+        console.log("✅ Payment succeeded:", paymentIntent.id);
+
         const response = await fetch("/api/stripe/confirm-payment", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            paymentIntentId:
-              elements.getElement(PaymentElement)?.__private
-                ?.lastPaymentIntentId,
+            paymentIntentId: paymentIntent.id, // ✅ Now we have the ID!
             orderData,
           }),
         });
@@ -107,18 +78,20 @@ function PaymentFormContent({
         const result = await response.json();
 
         if (result.success) {
+          setMessage("Payment successful! Redirecting...");
           onPaymentSuccess(result.order);
         } else {
           setMessage(result.error || "Failed to create order");
           onPaymentError(result.error || "Failed to create order");
         }
-      } catch (error) {
-        setMessage("Failed to process order");
-        onPaymentError("Failed to process order");
       }
+    } catch (err) {
+      console.error("Payment error:", err);
+      setMessage("Failed to process payment");
+      onPaymentError("Failed to process payment");
+    } finally {
+      setIsLoading(false);
     }
-
-    setIsLoading(false);
   };
 
   return (
@@ -133,7 +106,7 @@ function PaymentFormContent({
           {message && (
             <Alert
               variant={
-                message.includes("succeeded") ? "default" : "destructive"
+                message.includes("successful") ? "default" : "destructive"
               }
             >
               <AlertDescription>{message}</AlertDescription>
@@ -149,12 +122,16 @@ function PaymentFormContent({
             {isLoading ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Processing...
+                Processing Payment...
               </>
             ) : (
-              `Pay $${orderData.total}`
+              `Pay $${orderData.total.toFixed(2)}`
             )}
           </Button>
+
+          <p className="text-xs text-center text-muted-foreground">
+            Your payment is secured by Stripe
+          </p>
         </CardContent>
       </Card>
     </form>
@@ -172,13 +149,13 @@ export function PaymentForm({
     appearance: {
       theme: "stripe" as const,
       variables: {
-        colorPrimary: "#0570de",
+        colorPrimary: "#2563eb",
         colorBackground: "#ffffff",
-        colorText: "#30313d",
-        colorDanger: "#df1b41",
+        colorText: "#1f2937",
+        colorDanger: "#dc2626",
         fontFamily: "system-ui, sans-serif",
         spacingUnit: "4px",
-        borderRadius: "6px",
+        borderRadius: "8px",
       },
     },
   };

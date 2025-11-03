@@ -2,6 +2,7 @@
 
 import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
+import { PaymentForm } from "@/components/stripe/payment-form";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -55,6 +56,9 @@ export default function CheckoutPage() {
   const { items, getTotalPrice, clearCart } = useCartStore();
   const [isProcessing, setIsProcessing] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
+  const [clientSecret, setClientSecret] = useState<string | null>(null);
+  const [orderData, setOrderData] = useState<any>(null);
+  const [showStripeForm, setShowStripeForm] = useState(false);
 
   const subtotal = getTotalPrice();
   const shipping = subtotal > 50 ? 0 : 9.99;
@@ -101,45 +105,90 @@ export default function CheckoutPage() {
 
   const onSubmit = async (data: CheckoutFormData) => {
     setIsProcessing(true);
+
     try {
-      const res = await fetch("/api/orders", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          userId: "guestUser", // later from auth
-          items,
-          total,
-          shipping,
-          tax,
-          subtotal,
-          shippingInfo: {
-            firstName: data.firstName,
-            lastName: data.lastName,
-            email: data.email,
-            phone: data.phone,
-            address1: data.address1,
-            address2: data.address2,
-            city: data.city,
-            province: data.province,
-            country: data.country,
-            postalCode: data.postalCode,
-            notes: data.notes,
-          },
-          paymentMethod: data.paymentMethod,
-        }),
-      });
+      const paymentMethod = data.paymentMethod;
+      console.log("🚀 ~ onSubmit ~ paymentMethod:", paymentMethod);
 
-      const result = await res.json();
-      if (!result.success) throw new Error(result.error);
+      // Prepare order data
+      const orderPayload = {
+        userId: "guestUser",
+        items,
+        total,
+        shipping,
+        tax,
+        subtotal,
+        shippingAddress: {
+          firstName: data.firstName,
+          lastName: data.lastName,
+          email: data.email,
+          phone: data.phone,
+          address1: data.address1,
+          address2: data.address2,
+          city: data.city,
+          province: data.province,
+          country: data.country,
+          postalCode: data.postalCode,
+        },
+        guestEmail: data.email, // For email confirmation
+        notes: data.notes,
+        paymentMethod,
+      };
 
-      // Clear cart + redirect
-      clearCart();
-      router.push(`/order-confirmation/${result.order.id}`);
+      // If Stripe payment selected
+      if (paymentMethod === "stripe") {
+        // Create Stripe payment intent
+        const stripeRes = await fetch("/api/stripe/create-payment-intent", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            items,
+            shippingAddress: orderPayload.shippingAddress,
+          }),
+        });
+
+        const stripeResult = await stripeRes.json();
+
+        if (!stripeResult.clientSecret) {
+          throw new Error("Failed to initialize payment");
+        }
+
+        // Store order data and show Stripe form
+        setOrderData(orderPayload);
+        setClientSecret(stripeResult.clientSecret);
+        setShowStripeForm(true);
+      } else if (paymentMethod === "cod") {
+        // Cash on Delivery - Create order directly
+        const res = await fetch("/api/orders", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(orderPayload),
+        });
+
+        const result = await res.json();
+        if (!result.success) throw new Error(result.error);
+
+        // Clear cart and redirect
+        clearCart();
+        router.push(`/order-confirmation/${result.order.id}`);
+      }
     } catch (err) {
-      console.error(err);
+      console.error("Checkout error:", err);
+      alert("Failed to process order. Please try again.");
     } finally {
       setIsProcessing(false);
     }
+  };
+
+  const handlePaymentSuccess = (order: any) => {
+    clearCart();
+    router.push(`/order-confirmation/${order.id}`);
+  };
+
+  const handlePaymentError = (error: string) => {
+    alert(`Payment failed: ${error}`);
+    setShowStripeForm(false);
+    setClientSecret(null);
   };
 
   const renderStepIndicator = () => (
@@ -210,276 +259,305 @@ export default function CheckoutPage() {
           {renderStepIndicator()}
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Checkout Form */}
-            <div className="lg:col-span-2">
-              <Form {...form}>
-                <form
-                  onSubmit={form.handleSubmit(onSubmit)}
-                  className="space-y-8"
-                >
-                  {/* Shipping Information */}
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="flex items-center">
-                        <Truck className="h-5 w-5 mr-2" />
-                        Shipping Information
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="space-y-6">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <FormField
-                          control={form.control}
-                          name="firstName"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>First Name</FormLabel>
-                              <FormControl>
-                                <Input placeholder="John" {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                        <FormField
-                          control={form.control}
-                          name="lastName"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Last Name</FormLabel>
-                              <FormControl>
-                                <Input placeholder="Doe" {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                      </div>
-
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <FormField
-                          control={form.control}
-                          name="email"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Email Address</FormLabel>
-                              <FormControl>
-                                <Input
-                                  type="email"
-                                  placeholder="john@example.com"
-                                  {...field}
-                                />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                        <FormField
-                          control={form.control}
-                          name="phone"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Phone Number</FormLabel>
-                              <FormControl>
-                                <Input
-                                  placeholder="+1 (555) 123-4567"
-                                  {...field}
-                                />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                      </div>
-
-                      <FormField
-                        control={form.control}
-                        name="address1"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Street Address</FormLabel>
-                            <FormControl>
-                              <Input placeholder="123 Main Street" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-
-                      <FormField
-                        control={form.control}
-                        name="address2"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>
-                              Apartment, suite, etc. (optional)
-                            </FormLabel>
-                            <FormControl>
-                              <Input placeholder="Apt 4B" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <FormField
-                          control={form.control}
-                          name="city"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>City</FormLabel>
-                              <FormControl>
-                                <Input placeholder="New York" {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                        <FormField
-                          control={form.control}
-                          name="province"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>State/Province</FormLabel>
-                              <FormControl>
-                                <Input placeholder="NY" {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                        <FormField
-                          control={form.control}
-                          name="postalCode"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Postal Code</FormLabel>
-                              <FormControl>
-                                <Input placeholder="10001" {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                      </div>
-
-                      <FormField
-                        control={form.control}
-                        name="country"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Country</FormLabel>
-                            <FormControl>
-                              <Input placeholder="United States" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-
-                      <FormField
-                        control={form.control}
-                        name="notes"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Order Notes (optional)</FormLabel>
-                            <FormControl>
-                              <Textarea
-                                placeholder="Special instructions for delivery..."
-                                className="resize-none"
-                                {...field}
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </CardContent>
-                  </Card>
-
-                  {/* Payment Method */}
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="flex items-center">
-                        <CreditCard className="h-5 w-5 mr-2" />
-                        Payment Method
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <FormField
-                        control={form.control}
-                        name="paymentMethod"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormControl>
-                              <RadioGroup
-                                onValueChange={field.onChange}
-                                defaultValue={field.value}
-                                className="space-y-4"
-                              >
-                                <div className="flex items-center space-x-2 p-4 border rounded-lg cursor-pointer hover:bg-accent">
-                                  <RadioGroupItem value="stripe" id="stripe" />
-                                  <div className="flex-1">
-                                    <Label
-                                      htmlFor="stripe"
-                                      className="font-medium cursor-pointer"
-                                    >
-                                      Credit/Debit Card
-                                    </Label>
-                                    <p className="text-sm text-muted-foreground">
-                                      Pay securely with Stripe
-                                    </p>
-                                  </div>
-                                  <div className="flex space-x-1">
-                                    <div className="w-8 h-5 bg-gray-200 rounded"></div>
-                                    <div className="w-8 h-5 bg-gray-200 rounded"></div>
-                                    <div className="w-8 h-5 bg-gray-200 rounded"></div>
-                                  </div>
-                                </div>
-
-                                <div className="flex items-center space-x-2 p-4 border rounded-lg cursor-pointer hover:bg-accent">
-                                  <RadioGroupItem value="cod" id="cod" />
-                                  <div className="flex-1">
-                                    <Label
-                                      htmlFor="cod"
-                                      className="font-medium cursor-pointer"
-                                    >
-                                      Cash on Delivery
-                                    </Label>
-                                    <p className="text-sm text-muted-foreground">
-                                      Pay when you receive your order
-                                    </p>
-                                  </div>
-                                  <Badge variant="secondary">Available</Badge>
-                                </div>
-                              </RadioGroup>
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </CardContent>
-                  </Card>
-
-                  {/* Submit Button */}
-                  <Button
-                    type="submit"
-                    size="lg"
-                    className="w-full"
-                    disabled={isProcessing}
+            {!showStripeForm ? (
+              // {/* Checkout Form */}
+              <div className="lg:col-span-2">
+                <Form {...form}>
+                  <form
+                    onSubmit={form.handleSubmit(onSubmit)}
+                    className="space-y-8"
                   >
-                    {isProcessing ? (
-                      "Processing..."
-                    ) : (
-                      <>
-                        Place Order
-                        <ArrowRight className="h-4 w-4 ml-2" />
-                      </>
-                    )}
-                  </Button>
-                </form>
-              </Form>
-            </div>
+                    {/* Shipping Information */}
+                    <Card>
+                      <CardHeader>
+                        <CardTitle className="flex items-center">
+                          <Truck className="h-5 w-5 mr-2" />
+                          Shipping Information
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent className="space-y-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <FormField
+                            control={form.control}
+                            name="firstName"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>First Name</FormLabel>
+                                <FormControl>
+                                  <Input placeholder="John" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                          <FormField
+                            control={form.control}
+                            name="lastName"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>Last Name</FormLabel>
+                                <FormControl>
+                                  <Input placeholder="Doe" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <FormField
+                            control={form.control}
+                            name="email"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>Email Address</FormLabel>
+                                <FormControl>
+                                  <Input
+                                    type="email"
+                                    placeholder="john@example.com"
+                                    {...field}
+                                  />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                          <FormField
+                            control={form.control}
+                            name="phone"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>Phone Number</FormLabel>
+                                <FormControl>
+                                  <Input
+                                    placeholder="+1 (555) 123-4567"
+                                    {...field}
+                                  />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                        </div>
+
+                        <FormField
+                          control={form.control}
+                          name="address1"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Street Address</FormLabel>
+                              <FormControl>
+                                <Input
+                                  placeholder="123 Main Street"
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+
+                        <FormField
+                          control={form.control}
+                          name="address2"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>
+                                Apartment, suite, etc. (optional)
+                              </FormLabel>
+                              <FormControl>
+                                <Input placeholder="Apt 4B" {...field} />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                          <FormField
+                            control={form.control}
+                            name="city"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>City</FormLabel>
+                                <FormControl>
+                                  <Input placeholder="New York" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                          <FormField
+                            control={form.control}
+                            name="province"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>State/Province</FormLabel>
+                                <FormControl>
+                                  <Input placeholder="NY" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                          <FormField
+                            control={form.control}
+                            name="postalCode"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>Postal Code</FormLabel>
+                                <FormControl>
+                                  <Input placeholder="10001" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                        </div>
+
+                        <FormField
+                          control={form.control}
+                          name="country"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Country</FormLabel>
+                              <FormControl>
+                                <Input placeholder="United States" {...field} />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+
+                        <FormField
+                          control={form.control}
+                          name="notes"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Order Notes (optional)</FormLabel>
+                              <FormControl>
+                                <Textarea
+                                  placeholder="Special instructions for delivery..."
+                                  className="resize-none"
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </CardContent>
+                    </Card>
+
+                    {/* Payment Method */}
+                    <Card>
+                      <CardHeader>
+                        <CardTitle className="flex items-center">
+                          <CreditCard className="h-5 w-5 mr-2" />
+                          Payment Method
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <FormField
+                          control={form.control}
+                          name="paymentMethod"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormControl>
+                                <RadioGroup
+                                  onValueChange={field.onChange}
+                                  defaultValue={field.value}
+                                  className="space-y-4"
+                                >
+                                  <div className="flex items-center space-x-2 p-4 border rounded-lg cursor-pointer hover:bg-accent">
+                                    <RadioGroupItem
+                                      value="stripe"
+                                      id="stripe"
+                                    />
+                                    <div className="flex-1">
+                                      <Label
+                                        htmlFor="stripe"
+                                        className="font-medium cursor-pointer"
+                                      >
+                                        Credit/Debit Card
+                                      </Label>
+                                      <p className="text-sm text-muted-foreground">
+                                        Pay securely with Stripe
+                                      </p>
+                                    </div>
+                                    <div className="flex space-x-1">
+                                      <div className="w-8 h-5 bg-gray-200 rounded"></div>
+                                      <div className="w-8 h-5 bg-gray-200 rounded"></div>
+                                      <div className="w-8 h-5 bg-gray-200 rounded"></div>
+                                    </div>
+                                  </div>
+
+                                  <div className="flex items-center space-x-2 p-4 border rounded-lg cursor-pointer hover:bg-accent">
+                                    <RadioGroupItem value="cod" id="cod" />
+                                    <div className="flex-1">
+                                      <Label
+                                        htmlFor="cod"
+                                        className="font-medium cursor-pointer"
+                                      >
+                                        Cash on Delivery
+                                      </Label>
+                                      <p className="text-sm text-muted-foreground">
+                                        Pay when you receive your order
+                                      </p>
+                                    </div>
+                                    <Badge variant="secondary">Available</Badge>
+                                  </div>
+                                </RadioGroup>
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </CardContent>
+                    </Card>
+
+                    {/* Submit Button */}
+                    <Button
+                      type="submit"
+                      size="lg"
+                      className="w-full"
+                      disabled={isProcessing}
+                    >
+                      {isProcessing ? (
+                        "Processing..."
+                      ) : (
+                        <>
+                          `Place Order - $${total.toFixed(2)}`
+                          <ArrowRight className="h-4 w-4 ml-2" />
+                        </>
+                      )}
+                    </Button>
+                  </form>
+                </Form>
+              </div>
+            ) : (
+              // Show Stripe Payment Form
+              <div className="max-w-2xl mx-auto">
+                <Button
+                  variant="outline"
+                  onClick={() => {
+                    setShowStripeForm(false);
+                    setClientSecret(null);
+                  }}
+                  className="mb-4"
+                >
+                  ← Back to Checkout
+                </Button>
+
+                <PaymentForm
+                  clientSecret={clientSecret!}
+                  orderData={orderData}
+                  onPaymentSuccess={handlePaymentSuccess}
+                  onPaymentError={handlePaymentError}
+                />
+              </div>
+            )}
 
             {/* Order Summary */}
             <div className="lg:col-span-1">

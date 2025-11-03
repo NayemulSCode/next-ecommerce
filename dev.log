@@ -328,3 +328,173 @@ Error: Route "/api/placeholder/[...path]" used `params.path`. `params` should be
  GET /api/orders/6908e516ba8ea71489c9ad67 200 in 6341ms
 [32m[nodemon] restarting due to changes...[39m
 [32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+   Reload env: .env
+   Reload env: .env
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+ ○ Compiling / ...
+ ✓ Compiled / in 24.8s (1022 modules)
+ GET / 200 in 26989ms
+ ○ Compiling /api/placeholder/[...path] ...
+ ✓ Compiled /api/placeholder/[...path] in 2.8s (1010 modules)
+Error: Route "/api/placeholder/[...path]" used `params.path`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at GET (src\app\api\placeholder\[...path]\route.ts:8:36)
+   6 | ) {
+   7 |   try {
+>  8 |     const [width, height] = params.path
+     |                                    ^
+   9 |
+  10 |     // Generate a simple SVG placeholder
+  11 |     const w = parseInt(width) || 300
+ GET /api/placeholder/300/300 200 in 6753ms
+ ⨯ The requested resource "/api/placeholder/300/300" has type "image/svg+xml" but dangerouslyAllowSVG is disabled. Consider adding the "unoptimized" property to the <Image>.
+ ○ Compiling /cart ...
+ ✓ Compiled /cart in 3.5s (1049 modules)
+ GET /cart 200 in 4337ms
+ ○ Compiling /checkout ...
+ ✓ Compiled /checkout in 7.6s (1195 modules)
+ GET /checkout 200 in 9025ms
+ ○ Compiling /api/orders ...
+ ✓ Compiled /api/orders in 3s (1330 modules)
+🍃 Using MongoDB adapter
+🍃 Using MongoDB adapter
+✅ Connected to MongoDB successfully
+🚀 ~ POST ~ customerEmail: undefined
+⚠️ Failed to send confirmation email: TypeError: Cannot read properties of undefined (reading 'address1')
+    at generateOrderEmailHTML (src\app\api\orders\route.ts:195:33)
+    at POST (src\app\api\orders\route.ts:88:15)
+  193 |             <h2 style="color: #1f2937; font-size: 18px; margin-top: 0;">📦 Shipping Address</h2>
+  194 |             <p style="margin: 5px 0; line-height: 1.8;">
+> 195 |               ${shippingAddress.address1}<br>
+      |                                 ^
+  196 |               ${
+  197 |                 shippingAddress.address2
+  198 |                   ? `${shippingAddress.address2}<br>`
+ POST /api/orders 200 in 6459ms
+ ○ Compiling /order-confirmation/[orderId] ...
+ ✓ Compiled /order-confirmation/[orderId] in 2.5s (1343 modules)
+ GET /order-confirmation/6908eee9f671af7f13e0b00d 200 in 7284ms
+ ○ Compiling /api/orders/[id] ...
+ ✓ Compiled /api/orders/[id] in 1223ms (1238 modules)
+🍃 Using MongoDB adapter
+🍃 Using MongoDB adapter
+✅ Connected to MongoDB successfully
+ GET /api/orders/6908eee9f671af7f13e0b00d 200 in 6829ms
+ ○ Compiling / ...
+ ✓ Compiled / in 2.7s (747 modules)
+ GET / 200 in 4507ms
+ ○ Compiling /api/placeholder/[...path] ...
+ ✓ Compiled /api/placeholder/[...path] in 1125ms (749 modules)
+Error: Route "/api/placeholder/[...path]" used `params.path`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at GET (src\app\api\placeholder\[...path]\route.ts:8:36)
+   6 | ) {
+   7 |   try {
+>  8 |     const [width, height] = params.path
+     |                                    ^
+   9 |
+  10 |     // Generate a simple SVG placeholder
+  11 |     const w = parseInt(width) || 300
+ GET /api/placeholder/300/300 200 in 1816ms
+ ⨯ The requested resource "/api/placeholder/300/300" has type "image/svg+xml" but dangerouslyAllowSVG is disabled. Consider adding the "unoptimized" property to the <Image>.
+ GET / 200 in 4407ms
+Error: Route "/api/placeholder/[...path]" used `params.path`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at GET (src\app\api\placeholder\[...path]\route.ts:8:36)
+   6 | ) {
+   7 |   try {
+>  8 |     const [width, height] = params.path
+     |                                    ^
+   9 |
+  10 |     // Generate a simple SVG placeholder
+  11 |     const w = parseInt(width) || 300
+ GET /api/placeholder/300/300 200 in 591ms
+ ⨯ The requested resource "/api/placeholder/300/300" has type "image/svg+xml" but dangerouslyAllowSVG is disabled. Consider adding the "unoptimized" property to the <Image>.
+ ⚠ Cross origin request detected from 127.0.0.1 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+ ○ Compiling /api/auth/[...nextauth] ...
+ ✓ Compiled /api/auth/[...nextauth] in 2.3s (601 modules)
+ ✓ Compiled in 6.6s (539 modules)
+🍃 Using MongoDB adapter
+ GET /favicon.ico 200 in 18542ms
+🍃 Using MongoDB adapter
+ GET /api/auth/session 200 in 24537ms
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+ ○ Compiling /cart ...
+ ✓ Compiled /cart in 13.6s (969 modules)
+ GET /cart 200 in 16046ms
+ ○ Compiling /checkout ...
+ ✓ Compiled /checkout in 5.7s (1168 modules)
+ GET /checkout 200 in 7350ms
+ ○ Compiling /api/stripe/create-payment-intent ...
+ ✓ Compiled /api/stripe/create-payment-intent in 4.7s (1379 modules)
+ POST /api/stripe/create-payment-intent 200 in 6763ms
+ ○ Compiling /api/stripe/confirm-payment ...
+ ✓ Compiled /api/stripe/confirm-payment in 5.6s (935 modules)
+🍃 Using MongoDB adapter
+🍃 Using MongoDB adapter
+❌ Confirm payment error: Error: Stripe: Argument "intent" must be a string, but got: undefined (on API request to `GET /v1/payment_intents/{intent}`)
+    at new Promise (<anonymous>)
+    at POST (src\app\api\stripe\confirm-payment\route.ts:28:55)
+  26 |
+  27 |     // ✅ 1️⃣ Verify payment with Stripe
+> 28 |     const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
+     |                                                       ^
+  29 |
+  30 |     if (paymentIntent.status !== "succeeded") {
+  31 |       return NextResponse.json(
+ POST /api/stripe/confirm-payment 500 in 10617ms
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+ ○ Compiling /api/stripe/create-payment-intent ...
+ ✓ Compiled /api/stripe/create-payment-intent in 5.8s (500 modules)
+ POST /api/stripe/create-payment-intent 200 in 7787ms
+ ○ Compiling /api/stripe/confirm-payment ...
+ ✓ Compiled /api/stripe/confirm-payment in 3.4s (622 modules)
+🍃 Using MongoDB adapter
+🍃 Using MongoDB adapter
+❌ Confirm payment error: Error: Stripe: Argument "intent" must be a string, but got: undefined (on API request to `GET /v1/payment_intents/{intent}`)
+    at new Promise (<anonymous>)
+    at POST (src\app\api\stripe\confirm-payment\route.ts:28:55)
+  26 |
+  27 |     // ✅ 1️⃣ Verify payment with Stripe
+> 28 |     const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
+     |                                                       ^
+  29 |
+  30 |     if (paymentIntent.status !== "succeeded") {
+  31 |       return NextResponse.json(
+ POST /api/stripe/confirm-payment 500 in 7989ms
+   Reload env: .env
+ ✓ Compiled in 540ms (195 modules)
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+ ○ Compiling /checkout ...
