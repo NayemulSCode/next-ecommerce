@@ -106,9 +106,12 @@ export default function CheckoutPage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          userId: "someUserIdHere", // later from auth
+          userId: "guestUser", // later from auth
           items,
           total,
+          shipping,
+          tax,
+          subtotal,
           shippingInfo: {
             firstName: data.firstName,
             lastName: data.lastName,

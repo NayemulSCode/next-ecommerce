@@ -6,13 +6,15 @@
 > Ready on http://127.0.0.1:3000
 > Socket.IO server running at ws://127.0.0.1:3000/api/socketio
  ○ Compiling / ...
- ✓ Compiled / in 16.3s (1004 modules)
- GET / 200 in 23064ms
+ ✓ Compiled / in 14.1s (990 modules)
+ GET / 200 in 30037ms
  ○ Compiling /api/placeholder/[...path] ...
- ✓ Compiled /api/placeholder/[...path] in 8.3s (1010 modules)
+   Reload env: .env
  ⚠ Cross origin request detected from 127.0.0.1 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
 Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
- ○ Compiling /api/auth/[...nextauth] ...
+ ✓ Compiled /api/auth/[...nextauth] in 30.9s (1321 modules)
+🍃 Using MongoDB adapter
+ GET / 200 in 14652ms
 Error: Route "/api/placeholder/[...path]" used `params.path`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
     at GET (src\app\api\placeholder\[...path]\route.ts:8:36)
    6 | ) {
@@ -31,317 +33,133 @@ Error: Route "/api/placeholder/[...path]" used `params.path`. `params` should be
    9 |
   10 |     // Generate a simple SVG placeholder
   11 |     const w = parseInt(width) || 300
- GET /api/placeholder/1200/400 200 in 11588ms
- GET /api/placeholder/300/300 200 in 15134ms
+ GET /api/placeholder/300/300 200 in 45491ms
+ GET /api/placeholder/1200/400 200 in 48310ms
  ⨯ The requested resource "/api/placeholder/300/300" has type "image/svg+xml" but dangerouslyAllowSVG is disabled. Consider adding the "unoptimized" property to the <Image>.
- ✓ Compiled /api/auth/[...nextauth] in 6.3s (1321 modules)
-🍃 Using MongoDB adapter
-🍃 Using MongoDB adapter
- GET /api/auth/session 200 in 26530ms
- GET /api/auth/session 200 in 230ms
-🍃 Using MongoDB adapter
- ○ Compiling /cart ...
- ✓ Compiled /cart in 4.8s (1346 modules)
- GET /cart 200 in 5664ms
- GET / 200 in 183ms
- ○ Compiling /api/placeholder/[...path] ...
- ✓ Compiled /api/placeholder/[...path] in 903ms (931 modules)
-Error: Route "/api/placeholder/[...path]" used `params.path`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-    at GET (src\app\api\placeholder\[...path]\route.ts:8:36)
-   6 | ) {
-   7 |   try {
->  8 |     const [width, height] = params.path
-     |                                    ^
-   9 |
-  10 |     // Generate a simple SVG placeholder
-  11 |     const w = parseInt(width) || 300
- GET /api/placeholder/300/300 200 in 2188ms
- ⨯ The requested resource "/api/placeholder/300/300" has type "image/svg+xml" but dangerouslyAllowSVG is disabled. Consider adding the "unoptimized" property to the <Image>.
- GET /cart 200 in 244ms
- ○ Compiling /checkout ...
- ✓ Compiled /checkout in 4s (1543 modules)
- GET /checkout 200 in 4799ms
-🍃 Using MongoDB adapter
- GET /api/auth/session 200 in 738ms
-🍃 Using MongoDB adapter
- ○ Compiling /order-confirmation ...
- ✓ Compiled /order-confirmation in 5.3s (1542 modules)
- GET /order-confirmation 200 in 6391ms
- ○ Compiling /_not-found ...
- ✓ Compiled /_not-found in 3.3s (1231 modules)
- GET /account/orders 404 in 6012ms
- GET /account/orders 404 in 1428ms
- ○ Compiling /api/auth/[...nextauth] ...
- ✓ Compiled /api/auth/[...nextauth] in 1931ms (1019 modules)
-🍃 Using MongoDB adapter
- GET /api/auth/session 200 in 3839ms
- GET /order-confirmation 200 in 2305ms
- GET /api/auth/session 200 in 110ms
-🍃 Using MongoDB adapter
- GET /api/auth/session 200 in 2595ms
-🍃 Using MongoDB adapter
- GET /api/auth/session 200 in 218ms
-🍃 Using MongoDB adapter
- GET /api/auth/session 200 in 208ms
-🍃 Using MongoDB adapter
- GET /api/auth/session 200 in 195ms
-🍃 Using MongoDB adapter
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
- ○ Compiling /api/auth/[...nextauth] ...
- ✓ Compiled / in 29.9s (1321 modules)
-🍃 Using MongoDB adapter
- GET / 200 in 30481ms
- ○ Compiling /api/placeholder/[...path] ...
- ✓ Compiled /api/placeholder/[...path] in 3.6s (1321 modules)
-🍃 Using MongoDB adapter
- GET /api/auth/session 200 in 44385ms
-Error: Route "/api/placeholder/[...path]" used `params.path`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-    at GET (src\app\api\placeholder\[...path]\route.ts:8:36)
-   6 | ) {
-   7 |   try {
->  8 |     const [width, height] = params.path
-     |                                    ^
-   9 |
-  10 |     // Generate a simple SVG placeholder
-  11 |     const w = parseInt(width) || 300
- GET /api/placeholder/300/300 200 in 9556ms
- ⨯ The requested resource "/api/placeholder/300/300" has type "image/svg+xml" but dangerouslyAllowSVG is disabled. Consider adding the "unoptimized" property to the <Image>.
- ○ Compiling /cart ...
- ✓ Compiled /cart in 2.6s (1360 modules)
- GET /cart 200 in 3452ms
- ○ Compiling /checkout ...
- ✓ Compiled /checkout in 5.7s (1543 modules)
- GET /checkout 200 in 8486ms
- ○ Compiling /api/orders ...
- ✓ Compiled /api/orders in 4.2s (1265 modules)
-🍃 Using MongoDB adapter
-🍃 Using MongoDB adapter
-✅ Connected to MongoDB successfully
-❌ Create order error: BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
-    at POST (src\app\api\orders\route.ts:97:16)
-   95 |       await service.updateMany(
-   96 |         COLLECTIONS.PRODUCTS,
->  97 |         { _id: new ObjectId(item.productId) },
-      |                ^
-   98 |         { $inc: { quantity: -item.quantity } } // decrement stock
-   99 |       );
-  100 |     }
- POST /api/orders 500 in 6809ms
- ⚠ Cross origin request detected from 127.0.0.1 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
-Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
- ○ Compiling /api/auth/[...nextauth] ...
- ✓ Compiled /api/auth/[...nextauth] in 1220ms (396 modules)
-🍃 Using MongoDB adapter
- GET /api/auth/session 200 in 2565ms
- GET /api/auth/session 200 in 132ms
-🍃 Using MongoDB adapter
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
- ○ Compiling /api/orders ...
- ✓ Compiled /api/orders in 3.8s (379 modules)
-🍃 Using MongoDB adapter
-🍃 Using MongoDB adapter
-✅ Connected to MongoDB successfully
-⚠️ Failed to send confirmation email: Error: Configuration file not found or invalid. Please create .z-ai-config in your project, home directory, or /etc.
-    at async POST (src\app\api\orders\route.ts:104:19)
-  102 |     // ✅ 3️⃣ Send confirmation email (mock)
-  103 |     try {
-> 104 |       const zai = await ZAI.create();
-      |                   ^
-  105 |       const emailContent = `
-  106 |         Order Confirmation - ${orderNumber}
-  107 |
- POST /api/orders 200 in 7542ms
- ○ Compiling /order-confirmation ...
- ✓ Compiled /order-confirmation in 10.5s (1066 modules)
- GET /order-confirmation?orderId=undefined 200 in 13228ms
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
- ○ Compiling /cart ...
- ✓ Compiled /cart in 10.6s (969 modules)
- ⚠ Cross origin request detected from 127.0.0.1 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
-Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
- GET /cart 200 in 13167ms
- GET /cart 200 in 2169ms
  ○ Compiling /favicon.ico ...
- ✓ Compiled /api/auth/[...nextauth] in 2.7s (570 modules)
- ✓ Compiled in 3s (403 modules)
+ ✓ Compiled /favicon.ico in 1815ms (912 modules)
+ GET /favicon.ico 200 in 2290ms
 🍃 Using MongoDB adapter
- GET /favicon.ico 200 in 14157ms
- ○ Compiling /checkout ...
- ✓ Compiled /checkout in 9.4s (1469 modules)
- GET /checkout 200 in 11453ms
-🍃 Using MongoDB adapter
- GET /api/auth/session 200 in 31634ms
- ○ Compiling /api/orders ...
- ✓ Compiled /api/orders in 3.2s (1239 modules)
-🍃 Using MongoDB adapter
-🍃 Using MongoDB adapter
-✅ Connected to MongoDB successfully
-⚠️ Failed to send confirmation email: Error: Configuration file not found or invalid. Please create .z-ai-config in your project, home directory, or /etc.
-    at async POST (src\app\api\orders\route.ts:104:19)
-  102 |     // ✅ 3️⃣ Send confirmation email (mock)
-  103 |     try {
-> 104 |       const zai = await ZAI.create();
-      |                   ^
-  105 |       const emailContent = `
-  106 |         Order Confirmation - ${orderNumber}
-  107 |
- POST /api/orders 200 in 5076ms
- ○ Compiling /_not-found ...
- ✓ Compiled /_not-found in 2.9s (1244 modules)
- GET /order-confirmation?orderId=6907a75435bc46ca016bb22f 404 in 5123ms
- GET /order-confirmation?orderId=6907a75435bc46ca016bb22f 404 in 1036ms
- ○ Compiling /api/auth/[...nextauth] ...
- ✓ Compiled /api/auth/[...nextauth] in 1292ms (980 modules)
-🍃 Using MongoDB adapter
- GET /api/auth/session 200 in 3684ms
-🍃 Using MongoDB adapter
- GET /api/auth/session 200 in 131ms
- GET /api/auth/session 200 in 105ms
-🍃 Using MongoDB adapter
+ GET /api/auth/session 200 in 48108ms
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
 [32m[nodemon] restarting due to changes...[39m
 [32m[nodemon] starting `npx tsx server.ts`[39m
 > Ready on http://127.0.0.1:3000
 > Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+ ○ Compiling /cart ...
+ ✓ Compiled /cart in 23s (969 modules)
+ GET /cart 200 in 3117ms
+ GET /cart 200 in 25641ms
+ ○ Compiling /checkout ...
+ ✓ Compiled /checkout in 5.1s (1138 modules)
+ GET /checkout 200 in 6115ms
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+ ○ Compiling /api/orders ...
+ ✓ Compiled /api/orders in 6s (425 modules)
+🍃 Using MongoDB adapter
+🍃 Using MongoDB adapter
+✅ Connected to MongoDB successfully
+⚠️ Failed to send confirmation email: TypeError: Cannot read properties of undefined (reading 'email')
+    at POST (src\app\api\orders\route.ts:80:45)
+  78 |     // ✅ 3️⃣ Send confirmation email (mock)
+  79 |     try {
+> 80 |       const customerEmail = shippingAddress.email || guestEmail || userId;
+     |                                             ^
+  81 |       console.log("🚀 ~ POST ~ customerEmail:", customerEmail);
+  82 |
+  83 |       await transporter.sendMail({
+ POST /api/orders 200 in 16158ms
  ○ Compiling /order-confirmation/[orderId] ...
- ✓ Compiled /order-confirmation/[orderId] in 11.5s (967 modules)
- GET /order-confirmation/6907a75435bc46ca016bb22f 200 in 17184ms
- ⚠ Cross origin request detected from 127.0.0.1 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
-Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
- ○ Compiling /favicon.ico ...
- ✓ Compiled /api/orders/[id] in 2.5s (569 modules)
- ✓ Compiled in 3.5s (402 modules)
+ ✓ Compiled /order-confirmation/[orderId] in 9.8s (1113 modules)
+ GET /order-confirmation/6908dedf5638abcf1c233b4c 200 in 14532ms
+ ○ Compiling /api/orders/[id] ...
+ ✓ Compiled /api/orders/[id] in 1595ms (1101 modules)
 🍃 Using MongoDB adapter
- GET /favicon.ico 200 in 14124ms
-🍃 Using MongoDB adapter
-Error: Route "/api/orders/[id]" used `params.id`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-    at GET (src\app\api\orders\[id]\route.ts:11:13)
-   9 | ) {
-  10 |   try {
-> 11 |     const { id } = params;
-     |             ^
-  12 |
-  13 |     // Validate ObjectId
-  14 |     if (!ObjectId.isValid(id)) {
 🍃 Using MongoDB adapter
 ✅ Connected to MongoDB successfully
-❌ Get order error: TypeError: service.findOne is not a function
-    at GET (src\app\api\orders\[id]\route.ts:21:33)
-  19 |
-  20 |     // 1️⃣ Get order
-> 21 |     const order = await service.findOne(COLLECTIONS.ORDERS, {
-     |                                 ^
-  22 |       _id: new ObjectId(id),
-  23 |     });
-  24 |     console.log("🚀 ~ GET ~ order:", order);
- GET /api/orders/6907a75435bc46ca016bb22f 500 in 19945ms
- GET /api/auth/session 200 in 20019ms
- GET /order-confirmation/6907a3ec972c9a74876dc38e 200 in 4923ms
-Error: Route "/api/orders/[id]" used `params.id`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-    at GET (src\app\api\orders\[id]\route.ts:11:13)
-   9 | ) {
-  10 |   try {
-> 11 |     const { id } = params;
-     |             ^
-  12 |
-  13 |     // Validate ObjectId
-  14 |     if (!ObjectId.isValid(id)) {
-❌ Get order error: TypeError: service.findOne is not a function
-    at GET (src\app\api\orders\[id]\route.ts:21:33)
-  19 |
-  20 |     // 1️⃣ Get order
-> 21 |     const order = await service.findOne(COLLECTIONS.ORDERS, {
-     |                                 ^
-  22 |       _id: new ObjectId(id),
-  23 |     });
-  24 |     console.log("🚀 ~ GET ~ order:", order);
- GET /api/orders/6907a3ec972c9a74876dc38e 500 in 780ms
- GET /api/auth/session 200 in 929ms
+ GET /api/orders/6908dedf5638abcf1c233b4c 200 in 6656ms
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://127.0.0.1:3000
+> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+ ○ Compiling / ...
+ ✓ Compiled / in 8s (1004 modules)
+ GET / 200 in 11497ms
+ ○ Compiling /api/placeholder/[...path] ...
+ ✓ Compiled /api/placeholder/[...path] in 5.8s (1010 modules)
+ ○ Compiling /favicon.ico ...
+ ⚠ Cross origin request detected from 127.0.0.1 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+ ✓ Compiled /api/auth/[...nextauth] in 1613ms (601 modules)
+ ✓ Compiled in 2.5s (411 modules)
+ GET /favicon.ico 200 in 8438ms
+🍃 Using MongoDB adapter
+Error: Route "/api/placeholder/[...path]" used `params.path`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at GET (src\app\api\placeholder\[...path]\route.ts:8:36)
+   6 | ) {
+   7 |   try {
+>  8 |     const [width, height] = params.path
+     |                                    ^
+   9 |
+  10 |     // Generate a simple SVG placeholder
+  11 |     const w = parseInt(width) || 300
+ GET /api/placeholder/300/300 200 in 17758ms
+ ⨯ The requested resource "/api/placeholder/300/300" has type "image/svg+xml" but dangerouslyAllowSVG is disabled. Consider adding the "unoptimized" property to the <Image>.
+🍃 Using MongoDB adapter
+ GET /api/auth/session 200 in 14808ms
+ ○ Compiling /cart ...
+ ✓ Compiled /cart in 2.7s (1362 modules)
+ GET /cart 200 in 3700ms
+ ○ Compiling /checkout ...
+ ✓ Compiled /checkout in 3.6s (1545 modules)
+ GET /checkout 200 in 4617ms
+ ○ Compiling /api/orders ...
+ ✓ Compiled /api/orders in 3.4s (1358 modules)
 🍃 Using MongoDB adapter
 🍃 Using MongoDB adapter
- GET /order-confirmation/6907a27c2f0efc421626787a 200 in 407ms
-Error: Route "/api/orders/[id]" used `params.id`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-    at GET (src\app\api\orders\[id]\route.ts:11:13)
-   9 | ) {
-  10 |   try {
-> 11 |     const { id } = params;
-     |             ^
-  12 |
-  13 |     // Validate ObjectId
-  14 |     if (!ObjectId.isValid(id)) {
-❌ Get order error: TypeError: service.findOne is not a function
-    at GET (src\app\api\orders\[id]\route.ts:21:33)
-  19 |
-  20 |     // 1️⃣ Get order
-> 21 |     const order = await service.findOne(COLLECTIONS.ORDERS, {
-     |                                 ^
-  22 |       _id: new ObjectId(id),
-  23 |     });
-  24 |     console.log("🚀 ~ GET ~ order:", order);
- GET /api/orders/6907a27c2f0efc421626787a 500 in 832ms
- GET /api/auth/session 200 in 704ms
+✅ Connected to MongoDB successfully
+🚀 ~ POST ~ customerEmail: someUserIdHere
+⚠️ Failed to send confirmation email: TypeError: Cannot read properties of undefined (reading 'toFixed')
+    at generateOrderEmailHTML (src\app\api\orders\route.ts:226:76)
+    at POST (src\app\api\orders\route.ts:87:15)
+  224 |               <tr>
+  225 |                 <td style="padding: 8px 0;">Subtotal:</td>
+> 226 |                 <td style="padding: 8px 0; text-align: right;">$${subtotal.toFixed(
+      |                                                                            ^
+  227 |                   2
+  228 |                 )}</td>
+  229 |               </tr>
+ POST /api/orders 200 in 5517ms
+ ○ Compiling /order-confirmation/[orderId] ...
+ ✓ Compiled /order-confirmation/[orderId] in 2.5s (1371 modules)
+ GET /order-confirmation/6908e165e0eb7bcbde99b427 200 in 8300ms
+ ○ Compiling /api/orders/[id] ...
+ ✓ Compiled /api/orders/[id] in 2.4s (1373 modules)
 🍃 Using MongoDB adapter
 🍃 Using MongoDB adapter
- GET /order-confirmation/6907a3ec972c9a74876dc38e 200 in 552ms
-Error: Route "/api/orders/[id]" used `params.id`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-    at GET (src\app\api\orders\[id]\route.ts:11:13)
-   9 | ) {
-  10 |   try {
-> 11 |     const { id } = params;
-     |             ^
-  12 |
-  13 |     // Validate ObjectId
-  14 |     if (!ObjectId.isValid(id)) {
-❌ Get order error: TypeError: service.findOne is not a function
-    at GET (src\app\api\orders\[id]\route.ts:21:33)
-  19 |
-  20 |     // 1️⃣ Get order
-> 21 |     const order = await service.findOne(COLLECTIONS.ORDERS, {
-     |                                 ^
-  22 |       _id: new ObjectId(id),
-  23 |     });
-  24 |     console.log("🚀 ~ GET ~ order:", order);
- GET /api/orders/6907a3ec972c9a74876dc38e 500 in 494ms
- GET /api/auth/session 200 in 632ms
-🍃 Using MongoDB adapter
-🍃 Using MongoDB adapter
+✅ Connected to MongoDB successfully
+ GET /api/orders/6908e165e0eb7bcbde99b427 200 in 9472ms
 [32m[nodemon] restarting due to changes...[39m
 [32m[nodemon] starting `npx tsx server.ts`[39m
 [32m[nodemon] restarting due to changes...[39m
@@ -349,16 +167,10 @@ Error: Route "/api/orders/[id]" used `params.id`. `params` should be awaited bef
 > Ready on http://127.0.0.1:3000
 > Socket.IO server running at ws://127.0.0.1:3000/api/socketio
  ○ Compiling / ...
- ✓ Compiled / in 13.7s (1004 modules)
- GET / 200 in 23650ms
+ ✓ Compiled / in 10.7s (1004 modules)
+ GET / 200 in 15284ms
  ○ Compiling /api/placeholder/[...path] ...
- ⚠ Cross origin request detected from 127.0.0.1 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
-Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
- ✓ Compiled /api/auth/[...nextauth] in 17.5s (1321 modules)
-🍃 Using MongoDB adapter
- ○ Compiling /cart ...
- ✓ Compiled /cart in 11.3s (1360 modules)
- GET /cart 200 in 13427ms
+ ✓ Compiled /api/placeholder/[...path] in 3.5s (1010 modules)
 Error: Route "/api/placeholder/[...path]" used `params.path`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
     at GET (src\app\api\placeholder\[...path]\route.ts:8:36)
    6 | ) {
@@ -368,137 +180,105 @@ Error: Route "/api/placeholder/[...path]" used `params.path`. `params` should be
    9 |
   10 |     // Generate a simple SVG placeholder
   11 |     const w = parseInt(width) || 300
- GET /api/placeholder/300/300 200 in 34520ms
+ GET /api/placeholder/300/300 200 in 9229ms
  ⨯ The requested resource "/api/placeholder/300/300" has type "image/svg+xml" but dangerouslyAllowSVG is disabled. Consider adding the "unoptimized" property to the <Image>.
+ ○ Compiling /cart ...
+ ✓ Compiled /cart in 2.5s (1049 modules)
+ GET /cart 200 in 3970ms
  ○ Compiling /checkout ...
-🍃 Using MongoDB adapter
- GET /api/auth/session 200 in 30312ms
- ✓ Compiled /checkout in 6.4s (1543 modules)
- GET /checkout 200 in 8120ms
+ ✓ Compiled /checkout in 4s (1232 modules)
+ GET /checkout 200 in 5259ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 2.5s (1237 modules)
+ GET /sourceMap/assets/css/shadow.css.map 404 in 3927ms
+ GET /sourceMap/assets/css/shadow.css.map 404 in 187ms
  ○ Compiling /api/orders ...
- ✓ Compiled /api/orders in 2.1s (1548 modules)
+ ✓ Compiled /api/orders in 2.7s (1317 modules)
 🍃 Using MongoDB adapter
 🍃 Using MongoDB adapter
 ✅ Connected to MongoDB successfully
-⚠️ Failed to send confirmation email: Error: Configuration file not found or invalid. Please create .z-ai-config in your project, home directory, or /etc.
-    at async POST (src\app\api\orders\route.ts:104:19)
-  102 |     // ✅ 3️⃣ Send confirmation email (mock)
-  103 |     try {
-> 104 |       const zai = await ZAI.create();
-      |                   ^
-  105 |       const emailContent = `
-  106 |         Order Confirmation - ${orderNumber}
-  107 |
- POST /api/orders 200 in 4003ms
+🚀 ~ POST ~ customerEmail: someUserIdHere
+⚠️ Failed to send confirmation email: TypeError: Cannot read properties of undefined (reading 'toFixed')
+    at generateOrderEmailHTML (src\app\api\orders\route.ts:226:76)
+    at POST (src\app\api\orders\route.ts:87:15)
+  224 |               <tr>
+  225 |                 <td style="padding: 8px 0;">Subtotal:</td>
+> 226 |                 <td style="padding: 8px 0; text-align: right;">$${subtotal.toFixed(
+      |                                                                            ^
+  227 |                   2
+  228 |                 )}</td>
+  229 |               </tr>
+ POST /api/orders 200 in 6816ms
  ○ Compiling /order-confirmation/[orderId] ...
- ✓ Compiled /order-confirmation/[orderId] in 4.6s (1561 modules)
- GET /order-confirmation/6907a96d920333c6e02f59bc 200 in 11410ms
+ ✓ Compiled /order-confirmation/[orderId] in 3.1s (1328 modules)
+ GET /order-confirmation/6908e2f133680f815809d204 200 in 10139ms
  ○ Compiling /api/orders/[id] ...
  ✓ Compiled /api/orders/[id] in 2.1s (1330 modules)
 🍃 Using MongoDB adapter
 🍃 Using MongoDB adapter
-Error: Route "/api/orders/[id]" used `params.id`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-    at GET (src\app\api\orders\[id]\route.ts:11:13)
-   9 | ) {
-  10 |   try {
-> 11 |     const { id } = params;
-     |             ^
-  12 |
-  13 |     // Validate ObjectId
-  14 |     if (!ObjectId.isValid(id)) {
 ✅ Connected to MongoDB successfully
-❌ Get order error: TypeError: service.findOne is not a function
-    at GET (src\app\api\orders\[id]\route.ts:21:33)
-  19 |
-  20 |     // 1️⃣ Get order
-> 21 |     const order = await service.findOne(COLLECTIONS.ORDERS, {
-     |                                 ^
-  22 |       _id: new ObjectId(id),
-  23 |     });
-  24 |     console.log("🚀 ~ GET ~ order:", order);
- GET /api/orders/6907a96d920333c6e02f59bc 500 in 8674ms
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
- ○ Compiling /order-confirmation/[orderId] ...
- ✓ Compiled /order-confirmation/[orderId] in 8.9s (967 modules)
-🚀 ~ OrderConfirmationPage ~ orderId: 6907a96d920333c6e02f59bc
- GET /order-confirmation/6907a96d920333c6e02f59bc 200 in 15360ms
+ GET /api/orders/6908e2f133680f815809d204 200 in 8069ms
+ ○ Compiling / ...
+ ✓ Compiled / in 1270ms (580 modules)
+ GET / 200 in 2888ms
+ ○ Compiling /api/placeholder/[...path] ...
+ ✓ Compiled /api/placeholder/[...path] in 730ms (599 modules)
+Error: Route "/api/placeholder/[...path]" used `params.path`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at GET (src\app\api\placeholder\[...path]\route.ts:8:36)
+   6 | ) {
+   7 |   try {
+>  8 |     const [width, height] = params.path
+     |                                    ^
+   9 |
+  10 |     // Generate a simple SVG placeholder
+  11 |     const w = parseInt(width) || 300
+ GET /api/placeholder/300/300 200 in 1874ms
+ ⨯ The requested resource "/api/placeholder/300/300" has type "image/svg+xml" but dangerouslyAllowSVG is disabled. Consider adding the "unoptimized" property to the <Image>.
+ GET / 200 in 2523ms
+Error: Route "/api/placeholder/[...path]" used `params.path`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at GET (src\app\api\placeholder\[...path]\route.ts:8:36)
+   6 | ) {
+   7 |   try {
+>  8 |     const [width, height] = params.path
+     |                                    ^
+   9 |
+  10 |     // Generate a simple SVG placeholder
+  11 |     const w = parseInt(width) || 300
+ GET /api/placeholder/300/300 200 in 236ms
+ ⨯ The requested resource "/api/placeholder/300/300" has type "image/svg+xml" but dangerouslyAllowSVG is disabled. Consider adding the "unoptimized" property to the <Image>.
+ ○ Compiling /favicon.ico ...
+ ✓ Compiled /favicon.ico in 1503ms (601 modules)
  ⚠ Cross origin request detected from 127.0.0.1 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
 Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+ GET /favicon.ico 200 in 1912ms
  ○ Compiling /api/auth/[...nextauth] ...
- ✓ Compiled /api/auth/[...nextauth] in 7.6s (1284 modules)
+ ✓ Compiled /api/auth/[...nextauth] in 6s (1436 modules)
+🍃 Using MongoDB adapter
+🍃 Using MongoDB adapter
+ GET /api/auth/session 200 in 12587ms
+ ○ Compiling /cart ...
+ ✓ Compiled /cart in 2.1s (933 modules)
+ GET /cart 200 in 2819ms
+ ○ Compiling /checkout ...
+ ✓ Compiled /checkout in 2.9s (1026 modules)
+ GET /checkout 200 in 4058ms
+ ○ Compiling /api/orders ...
+ ✓ Compiled /api/orders in 1815ms (839 modules)
 🍃 Using MongoDB adapter
 🍃 Using MongoDB adapter
 ✅ Connected to MongoDB successfully
-❌ Get order error: TypeError: service.findOne is not a function
-    at GET (src\app\api\orders\[id]\route.ts:21:33)
-  19 |
-  20 |     // 1️⃣ Get order
-> 21 |     const order = await service.findOne(COLLECTIONS.ORDERS, {
-     |                                 ^
-  22 |       _id: new ObjectId(id),
-  23 |     });
-  24 |     console.log("🚀 ~ GET ~ order:", order);
- GET /api/orders/6907a96d920333c6e02f59bc 500 in 20160ms
-🍃 Using MongoDB adapter
- GET /api/auth/session 200 in 20278ms
- GET /api/auth/session 200 in 222ms
-🍃 Using MongoDB adapter
- GET /api/auth/session 200 in 85ms
-🍃 Using MongoDB adapter
- GET /api/auth/session 200 in 112ms
- GET /api/auth/session 200 in 73ms
-🍃 Using MongoDB adapter
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
+🚀 ~ POST ~ customerEmail: guestUser
+⚠️ Failed to send confirmation email: [Error: No recipients defined] { code: 'EENVELOPE', command: 'API' }
+ POST /api/orders 200 in 4235ms
  ○ Compiling /order-confirmation/[orderId] ...
- ✓ Compiled /order-confirmation/[orderId] in 9.4s (967 modules)
-🚀 ~ OrderConfirmationPage ~ orderId: 6907a96d920333c6e02f59bc
- GET /order-confirmation/6907a96d920333c6e02f59bc 200 in 15270ms
- ○ Compiling /favicon.ico ...
- ⚠ Cross origin request detected from 127.0.0.1 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
-Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
- ✓ Compiled /api/orders/[id] in 2.7s (569 modules)
- ✓ Compiled in 4.1s (402 modules)
-🍃 Using MongoDB adapter
- GET /favicon.ico 200 in 15448ms
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
- ○ Compiling /order-confirmation/[orderId] ...
- ✓ Compiled /order-confirmation/[orderId] in 7.3s (967 modules)
-🚀 ~ OrderConfirmationPage ~ orderId: 6907a96d920333c6e02f59bc
- GET /order-confirmation/6907a96d920333c6e02f59bc 200 in 13860ms
- ○ Compiling /favicon.ico ...
- ⚠ Cross origin request detected from 127.0.0.1 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
-Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
- ✓ Compiled /api/auth/[...nextauth] in 3.4s (569 modules)
- ✓ Compiled in 6s (402 modules)
-🍃 Using MongoDB adapter
- GET /favicon.ico 200 in 15891ms
+ ✓ Compiled /order-confirmation/[orderId] in 1693ms (847 modules)
+ GET /order-confirmation/6908e3d433680f815809d207 200 in 2817ms
+ ○ Compiling /api/orders/[id] ...
+ ✓ Compiled /api/orders/[id] in 1770ms (849 modules)
 🍃 Using MongoDB adapter
 ✅ Connected to MongoDB successfully
-❌ Get order error: TypeError: service.find is not a function
-    at GET (src\app\api\orders\[id]\route.ts:15:35)
-  13 |
-  14 |     // Use find instead of findOne
-> 15 |     const [order] = await service.find(COLLECTIONS.ORDERS, {
-     |                                   ^
-  16 |       _id: new ObjectId(id),
-  17 |     });
-  18 |     console.log("🚀 ~ GET ~ order:", order);
- GET /api/orders/6907a96d920333c6e02f59bc 500 in 20128ms
+ GET /api/orders/6908e3d433680f815809d207 200 in 2962ms
 🍃 Using MongoDB adapter
- GET /api/auth/session 200 in 20487ms
 [32m[nodemon] restarting due to changes...[39m
 [32m[nodemon] starting `npx tsx server.ts`[39m
 > Ready on http://127.0.0.1:3000
@@ -507,50 +287,44 @@ Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allow
 [32m[nodemon] starting `npx tsx server.ts`[39m
 > Ready on http://127.0.0.1:3000
 > Socket.IO server running at ws://127.0.0.1:3000/api/socketio
- ○ Compiling /order-confirmation/[orderId] ...
- ✓ Compiled /order-confirmation/[orderId] in 12.3s (967 modules)
-🚀 ~ OrderConfirmationPage ~ orderId: 6907a96d920333c6e02f59bc
- GET /order-confirmation/6907a96d920333c6e02f59bc 200 in 19870ms
- ⚠ Cross origin request detected from 127.0.0.1 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
-Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
- ○ Compiling /favicon.ico ...
- ✓ Compiled /api/auth/[...nextauth] in 2.8s (569 modules)
- ✓ Compiled in 3.8s (402 modules)
+ ○ Compiling / ...
+ ✓ Compiled / in 8.3s (1004 modules)
+ GET / 200 in 10774ms
+ ○ Compiling /api/placeholder/[...path] ...
+ ✓ Compiled /api/placeholder/[...path] in 2.3s (1010 modules)
+Error: Route "/api/placeholder/[...path]" used `params.path`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at GET (src\app\api\placeholder\[...path]\route.ts:8:36)
+   6 | ) {
+   7 |   try {
+>  8 |     const [width, height] = params.path
+     |                                    ^
+   9 |
+  10 |     // Generate a simple SVG placeholder
+  11 |     const w = parseInt(width) || 300
+ GET /api/placeholder/300/300 200 in 6086ms
+ ⨯ The requested resource "/api/placeholder/300/300" has type "image/svg+xml" but dangerouslyAllowSVG is disabled. Consider adding the "unoptimized" property to the <Image>.
+ ○ Compiling /cart ...
+ ✓ Compiled /cart in 2.4s (1049 modules)
+ GET /cart 200 in 3560ms
+ ○ Compiling /checkout ...
+ ✓ Compiled /checkout in 3.2s (1232 modules)
+ GET /checkout 200 in 4191ms
+ ○ Compiling /api/orders ...
+ ✓ Compiled /api/orders in 2.9s (1360 modules)
 🍃 Using MongoDB adapter
- GET /favicon.ico 200 in 14377ms
 🍃 Using MongoDB adapter
 ✅ Connected to MongoDB successfully
-Error finding document by id in orders: BSONError: Argument passed in does not match the accepted types
-    at MongoDBService.findById (src\lib\mongodb.ts:97:46)
-    at GET (src\app\api\orders\[id]\route.ts:15:35)
-   95 |       const collection = this.db.collection<T>(collectionName);
-   96 |       // 🔧 FIX: Use 'new ObjectId()' instead of 'ObjectId()'
->  97 |       return await collection.findOne({ _id: new ObjectId(id) } as any);
-      |                                              ^
-   98 |     } catch (error) {
-   99 |       console.error(
-  100 |         `Error finding document by id in ${collectionName}:`,
-❌ Get order error: TypeError: (intermediate value) is not iterable
-    at GET (src\app\api\orders\[id]\route.ts:15:21)
-  13 |
-  14 |     // Use find instead of findOne
-> 15 |     const [order] = await service.findById(COLLECTIONS.ORDERS, {
-     |                     ^
-  16 |       _id: new ObjectId(id),
-  17 |     });
-  18 |     console.log("🚀 ~ GET ~ order:", order);
- GET /api/orders/6907a96d920333c6e02f59bc 500 in 20915ms
+🚀 ~ POST ~ customerEmail: setauddin@gmail.com
+✅ Confirmation email sent to: setauddin@gmail.com
+ POST /api/orders 200 in 8906ms
+ ○ Compiling /order-confirmation/[orderId] ...
+ ✓ Compiled /order-confirmation/[orderId] in 1701ms (1373 modules)
+ GET /order-confirmation/6908e516ba8ea71489c9ad67 200 in 6362ms
+ ○ Compiling /api/orders/[id] ...
+ ✓ Compiled /api/orders/[id] in 1383ms (1327 modules)
 🍃 Using MongoDB adapter
- GET /api/auth/session 200 in 21007ms
- GET /api/auth/session 200 in 158ms
 🍃 Using MongoDB adapter
- GET /api/auth/session 200 in 209ms
-🍃 Using MongoDB adapter
- GET /api/auth/session 200 in 147ms
- GET /api/auth/session 200 in 61ms
-🍃 Using MongoDB adapter
+✅ Connected to MongoDB successfully
+ GET /api/orders/6908e516ba8ea71489c9ad67 200 in 6341ms
 [32m[nodemon] restarting due to changes...[39m
 [32m[nodemon] starting `npx tsx server.ts`[39m
-> Ready on http://127.0.0.1:3000
-> Socket.IO server running at ws://127.0.0.1:3000/api/socketio
- ○ Compiling /order-confirmation/[orderId] ...
