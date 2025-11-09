@@ -65,7 +65,7 @@ interface Product {
   featured: boolean;
   isActive: boolean;
   categoryId: string;
-  category: {
+  category?: {
     name: string;
     slug: string;
   };
@@ -99,10 +99,27 @@ interface ProductFormData {
   categoryId: string;
 }
 
+// 🎯 Static Categories (until you implement category API)
+const STATIC_CATEGORIES: Category[] = [
+  { id: "1", name: "Electronics", slug: "electronics", isActive: true },
+  { id: "2", name: "Clothing", slug: "clothing", isActive: true },
+  { id: "3", name: "Home & Garden", slug: "home-garden", isActive: true },
+  {
+    id: "4",
+    name: "Sports & Outdoors",
+    slug: "sports-outdoors",
+    isActive: true,
+  },
+  { id: "5", name: "Books", slug: "books", isActive: true },
+  { id: "6", name: "Toys & Games", slug: "toys-games", isActive: true },
+  { id: "7", name: "Health & Beauty", slug: "health-beauty", isActive: true },
+  { id: "8", name: "Automotive", slug: "automotive", isActive: true },
+];
+
 export function ProductManager() {
   const { data: session } = useSession();
   const [products, setProducts] = useState<Product[]>([]);
-  const [categories, setCategories] = useState<Category[]>([]);
+  const [categories] = useState<Category[]>(STATIC_CATEGORIES); // ✅ Using static categories
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
@@ -115,7 +132,7 @@ export function ProductManager() {
     price: "",
     comparePrice: "",
     cost: "",
-    quantity: "",
+    quantity: "0",
     weight: "",
     description: "",
     shortDesc: "",
@@ -127,9 +144,15 @@ export function ProductManager() {
     categoryId: "",
   });
 
+  // ✅ Fetch products on mount
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
   // 获取产品列表
   const fetchProducts = async () => {
     try {
+      setLoading(true);
       const params = new URLSearchParams({
         includeInactive: "true",
         limit: "100",
@@ -143,33 +166,10 @@ export function ProductManager() {
     } catch (error) {
       toast.error("Failed to fetch products");
       console.error("Fetch products error:", error);
-    }
-  };
-
-  // 获取分类列表
-  const fetchCategories = async () => {
-    try {
-      const response = await fetch("/api/categories?includeInactive=true");
-      if (!response.ok) throw new Error("Failed to fetch categories");
-
-      const data = await response.json();
-      setCategories(data || []);
-    } catch (error) {
-      toast.error("Failed to fetch categories");
-      console.error("Fetch categories error:", error);
-    }
-  };
-
-  // 初始化数据
-  useEffect(() => {
-    const loadData = async () => {
-      setLoading(true);
-      await Promise.all([fetchProducts(), fetchCategories()]);
+    } finally {
       setLoading(false);
-    };
-
-    loadData();
-  }, []);
+    }
+  };
 
   // 过滤产品
   const filteredProducts = products.filter((product) => {
@@ -193,7 +193,7 @@ export function ProductManager() {
       price: "",
       comparePrice: "",
       cost: "",
-      quantity: "",
+      quantity: "0",
       weight: "",
       description: "",
       shortDesc: "",
@@ -218,6 +218,12 @@ export function ProductManager() {
   // 处理表单提交
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // ✅ Validation
+    if (!formData.categoryId) {
+      toast.error("Please select a category");
+      return;
+    }
 
     try {
       const isEditing = !!editingProduct;
@@ -297,8 +303,8 @@ export function ProductManager() {
       weight: product.weight?.toString() || "",
       description: product.description || "",
       shortDesc: product.shortDesc || "",
-      images: product.images,
-      tags: product.tags,
+      images: product.images || [],
+      tags: product.tags || [],
       status: product.status,
       featured: product.featured,
       isActive: product.isActive,
@@ -312,8 +318,15 @@ export function ProductManager() {
     setFormData((prev) => ({
       ...prev,
       name,
-      slug: prev.slug || generateSlug(name),
+      // Only auto-generate slug if it's empty or hasn't been manually edited
+      slug: !editingProduct && !prev.slug ? generateSlug(name) : prev.slug,
     }));
+  };
+
+  // ✅ Get category name by ID
+  const getCategoryName = (categoryId: string) => {
+    const category = categories.find((c) => c.id === categoryId);
+    return category?.name || "Unknown";
   };
 
   // 检查权限
@@ -380,7 +393,7 @@ export function ProductManager() {
                   <TabsTrigger value="settings">Settings</TabsTrigger>
                 </TabsList>
 
-                <TabsContent value="basic" className="space-y-4">
+                <TabsContent value="basic" className="space-y-4 mt-4">
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="name">Product Name *</Label>
@@ -400,7 +413,7 @@ export function ProductManager() {
                         onChange={(e) =>
                           setFormData((prev) => ({
                             ...prev,
-                            sku: e.target.value,
+                            sku: e.target.value.toUpperCase(),
                           }))
                         }
                         placeholder="Enter SKU"
@@ -432,16 +445,19 @@ export function ProductManager() {
                       onValueChange={(value) =>
                         setFormData((prev) => ({ ...prev, categoryId: value }))
                       }
+                      required
                     >
                       <SelectTrigger>
                         <SelectValue placeholder="Select category" />
                       </SelectTrigger>
                       <SelectContent>
-                        {categories.map((category) => (
-                          <SelectItem key={category.id} value={category.id}>
-                            {category.name}
-                          </SelectItem>
-                        ))}
+                        {categories
+                          .filter((c) => c.isActive)
+                          .map((category) => (
+                            <SelectItem key={category.id} value={category.id}>
+                              {category.name}
+                            </SelectItem>
+                          ))}
                       </SelectContent>
                     </Select>
                   </div>
@@ -502,7 +518,7 @@ export function ProductManager() {
                   </div>
                 </TabsContent>
 
-                <TabsContent value="details" className="space-y-4">
+                <TabsContent value="details" className="space-y-4 mt-4">
                   <div className="space-y-2">
                     <Label htmlFor="shortDesc">Short Description</Label>
                     <Input
@@ -515,7 +531,11 @@ export function ProductManager() {
                         }))
                       }
                       placeholder="Brief product description"
+                      maxLength={200}
                     />
+                    <p className="text-xs text-muted-foreground">
+                      {formData.shortDesc.length}/200 characters
+                    </p>
                   </div>
 
                   <div className="space-y-2">
@@ -530,7 +550,7 @@ export function ProductManager() {
                         }))
                       }
                       placeholder="Detailed product description"
-                      rows={4}
+                      rows={5}
                     />
                   </div>
 
@@ -544,11 +564,14 @@ export function ProductManager() {
                       maxFiles={5}
                       maxSize={10 * 1024 * 1024}
                     />
+                    <p className="text-xs text-muted-foreground">
+                      Upload up to 5 images (max 10MB each)
+                    </p>
                   </div>
 
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="quantity">Quantity</Label>
+                      <Label htmlFor="quantity">Quantity *</Label>
                       <Input
                         id="quantity"
                         type="number"
@@ -561,6 +584,7 @@ export function ProductManager() {
                           }))
                         }
                         placeholder="0"
+                        required
                       />
                     </div>
                     <div className="space-y-2">
@@ -583,7 +607,7 @@ export function ProductManager() {
                   </div>
                 </TabsContent>
 
-                <TabsContent value="settings" className="space-y-4">
+                <TabsContent value="settings" className="space-y-4 mt-4">
                   <div className="space-y-2">
                     <Label htmlFor="status">Status</Label>
                     <Select
@@ -603,7 +627,13 @@ export function ProductManager() {
                     </Select>
                   </div>
 
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-center justify-between p-3 border rounded-lg">
+                    <div className="space-y-0.5">
+                      <Label htmlFor="featured">Featured Product</Label>
+                      <p className="text-xs text-muted-foreground">
+                        Display this product in featured sections
+                      </p>
+                    </div>
                     <Switch
                       id="featured"
                       checked={formData.featured}
@@ -611,10 +641,15 @@ export function ProductManager() {
                         setFormData((prev) => ({ ...prev, featured: checked }))
                       }
                     />
-                    <Label htmlFor="featured">Featured Product</Label>
                   </div>
 
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-center justify-between p-3 border rounded-lg">
+                    <div className="space-y-0.5">
+                      <Label htmlFor="isActive">Active</Label>
+                      <p className="text-xs text-muted-foreground">
+                        Make this product visible to customers
+                      </p>
+                    </div>
                     <Switch
                       id="isActive"
                       checked={formData.isActive}
@@ -622,7 +657,6 @@ export function ProductManager() {
                         setFormData((prev) => ({ ...prev, isActive: checked }))
                       }
                     />
-                    <Label htmlFor="isActive">Active</Label>
                   </div>
                 </TabsContent>
               </Tabs>
@@ -631,7 +665,10 @@ export function ProductManager() {
                 <Button
                   type="button"
                   variant="outline"
-                  onClick={() => setIsCreateDialogOpen(false)}
+                  onClick={() => {
+                    setIsCreateDialogOpen(false);
+                    resetForm();
+                  }}
                 >
                   Cancel
                 </Button>
@@ -649,7 +686,7 @@ export function ProductManager() {
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
-            placeholder="Search products..."
+            placeholder="Search products by name, SKU, or description..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="pl-10"
@@ -672,47 +709,103 @@ export function ProductManager() {
       <Card>
         <CardHeader>
           <CardTitle>Products ({filteredProducts.length})</CardTitle>
-          <CardDescription>Manage your product inventory</CardDescription>
+          <CardDescription>
+            {filteredProducts.length === products.length
+              ? "All products in your inventory"
+              : `Showing ${filteredProducts.length} of ${products.length} products`}
+          </CardDescription>
         </CardHeader>
         <CardContent>
-          <ScrollArea className="h-[600px]">
+          <ScrollArea className="h-[600px] pr-4">
             <div className="space-y-4">
               {filteredProducts.map((product) => (
                 <div
                   key={product.id}
-                  className="flex items-center justify-between p-4 border rounded-lg hover:bg-muted/50 transition-colors"
+                  className="flex items-start justify-between p-4 border rounded-lg hover:bg-muted/50 transition-colors"
                 >
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 mb-2">
-                      <h3 className="font-semibold truncate">{product.name}</h3>
-                      <Badge
-                        variant={
-                          product.status === "ACTIVE" ? "default" : "secondary"
-                        }
-                      >
-                        {product.status}
-                      </Badge>
-                      {product.featured && (
-                        <Badge variant="outline">Featured</Badge>
-                      )}
-                      {!product.isActive && (
-                        <Badge variant="destructive">Inactive</Badge>
+                  <div className="flex gap-4 flex-1 min-w-0">
+                    {/* Product Image */}
+                    <div className="flex-shrink-0 w-16 h-16 bg-muted rounded-md overflow-hidden">
+                      {product.images && product.images.length > 0 ? (
+                        <img
+                          src={product.images[0]}
+                          alt={product.name}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center">
+                          <Package className="h-6 w-6 text-muted-foreground" />
+                        </div>
                       )}
                     </div>
-                    <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                      <span>SKU: {product.sku}</span>
-                      <span>Category: {product.category.name}</span>
-                      <span>Stock: {product.quantity}</span>
-                      <span className="font-semibold text-foreground">
-                        ${product.price.toFixed(2)}
-                      </span>
+
+                    {/* Product Info */}
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-start gap-2 mb-2 flex-wrap">
+                        <h3 className="font-semibold truncate">
+                          {product.name}
+                        </h3>
+                        <Badge
+                          variant={
+                            product.status === "ACTIVE"
+                              ? "default"
+                              : product.status === "DRAFT"
+                              ? "secondary"
+                              : "outline"
+                          }
+                        >
+                          {product.status}
+                        </Badge>
+                        {product.featured && (
+                          <Badge variant="outline" className="bg-yellow-50">
+                            ⭐ Featured
+                          </Badge>
+                        )}
+                        {!product.isActive && (
+                          <Badge variant="destructive">Inactive</Badge>
+                        )}
+                      </div>
+                      <div className="flex items-center gap-4 text-sm text-muted-foreground flex-wrap">
+                        <span className="font-mono">SKU: {product.sku}</span>
+                        <span>
+                          Category:{" "}
+                          {product.category?.name ||
+                            getCategoryName(product.categoryId)}
+                        </span>
+                        <span
+                          className={
+                            product.quantity === 0
+                              ? "text-destructive font-medium"
+                              : product.quantity < 10
+                              ? "text-orange-600 font-medium"
+                              : ""
+                          }
+                        >
+                          Stock: {product.quantity}
+                          {product.quantity === 0 && " (Out of stock)"}
+                          {product.quantity > 0 &&
+                            product.quantity < 10 &&
+                            " (Low)"}
+                        </span>
+                        <span className="font-semibold text-foreground">
+                          ${product.price.toFixed(2)}
+                          {product.comparePrice && (
+                            <span className="ml-1 line-through text-muted-foreground font-normal">
+                              ${product.comparePrice.toFixed(2)}
+                            </span>
+                          )}
+                        </span>
+                      </div>
+                      {product.shortDesc && (
+                        <p className="text-sm text-muted-foreground mt-2 line-clamp-2">
+                          {product.shortDesc}
+                        </p>
+                      )}
                     </div>
-                    <p className="text-sm text-muted-foreground mt-1 line-clamp-2">
-                      {product.shortDesc || product.description}
-                    </p>
                   </div>
 
-                  <div className="flex items-center gap-2 ml-4">
+                  {/* Actions */}
+                  <div className="flex items-center gap-2 ml-4 flex-shrink-0">
                     <Button
                       variant="outline"
                       size="sm"
@@ -723,7 +816,7 @@ export function ProductManager() {
                     <AlertDialog>
                       <AlertDialogTrigger asChild>
                         <Button variant="outline" size="sm">
-                          <Trash2 className="h-4 w-4" />
+                          <Trash2 className="h-4 w-4 text-destructive" />
                         </Button>
                       </AlertDialogTrigger>
                       <AlertDialogContent>
@@ -731,7 +824,8 @@ export function ProductManager() {
                           <AlertDialogTitle>Delete Product</AlertDialogTitle>
                           <AlertDialogDescription>
                             Are you sure you want to delete "{product.name}"?
-                            This action cannot be undone.
+                            This action cannot be undone and will remove all
+                            product data.
                           </AlertDialogDescription>
                         </AlertDialogHeader>
                         <AlertDialogFooter>
@@ -740,7 +834,7 @@ export function ProductManager() {
                             onClick={() => handleDelete(product.id)}
                             className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
                           >
-                            Delete
+                            Delete Product
                           </AlertDialogAction>
                         </AlertDialogFooter>
                       </AlertDialogContent>
@@ -750,16 +844,27 @@ export function ProductManager() {
               ))}
 
               {filteredProducts.length === 0 && (
-                <div className="text-center py-8">
+                <div className="text-center py-12">
                   <Package className="mx-auto h-12 w-12 text-muted-foreground mb-4" />
                   <h3 className="text-lg font-semibold mb-2">
                     No products found
                   </h3>
-                  <p className="text-muted-foreground">
+                  <p className="text-muted-foreground mb-4">
                     {searchTerm || statusFilter !== "all"
                       ? "Try adjusting your search or filters"
                       : "Get started by adding your first product"}
                   </p>
+                  {(searchTerm || statusFilter !== "all") && (
+                    <Button
+                      variant="outline"
+                      onClick={() => {
+                        setSearchTerm("");
+                        setStatusFilter("all");
+                      }}
+                    >
+                      Clear Filters
+                    </Button>
+                  )}
                 </div>
               )}
             </div>

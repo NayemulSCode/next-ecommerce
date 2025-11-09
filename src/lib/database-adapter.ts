@@ -19,6 +19,7 @@ interface DatabaseAdapter {
   getProducts(filter?: any, options?: any): Promise<any[]>;
   updateProduct(id: string, data: any): Promise<any>;
   deleteProduct(id: string): Promise<boolean>;
+  checkProductHasOrders(productId: string): Promise<boolean>; // ✅ NEW
 
   // 分类操作
   createCategory(data: any): Promise<any>;
@@ -27,7 +28,6 @@ interface DatabaseAdapter {
   getCategories(filter?: any): Promise<any[]>;
   updateCategory(id: string, data: any): Promise<any>;
   deleteCategory(id: string): Promise<boolean>;
-
   // 订单操作
   createOrder(data: any): Promise<any>;
   getOrderById(id: string): Promise<any>;
@@ -101,7 +101,13 @@ class PrismaAdapter implements DatabaseAdapter {
       return false;
     }
   }
-
+  async checkProductHasOrders(productId: string): Promise<boolean> {
+    const orderItems = await prismaDb.orderItem.findMany({
+      where: { productId },
+      take: 1,
+    });
+    return orderItems.length > 0;
+  }
   async createCategory(data: any) {
     return await prismaDb.category.create({ data });
   }
@@ -277,7 +283,17 @@ class MongoDBAdapter implements DatabaseAdapter {
     const service = await this.getService();
     return await service.deleteOne(COLLECTIONS.PRODUCTS, id);
   }
+  // ✅ NEW: Check if product has orders
+  async checkProductHasOrders(productId: string): Promise<boolean> {
+    const service = await this.getService();
 
+    // Check if there are any order items with this product
+    const orderItems = await service.findMany(COLLECTIONS.ORDER_ITEMS, {
+      productId,
+    });
+
+    return orderItems.length > 0;
+  }
   async createCategory(data: any) {
     const service = await this.getService();
     const result = await service.create(COLLECTIONS.CATEGORIES, {

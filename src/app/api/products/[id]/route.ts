@@ -1,38 +1,23 @@
+// app/api/products/[id]/route.ts
 import { authOptions } from "@/lib/auth/config";
-import { db } from "@/lib/db";
+import { dbAdapter } from "@/lib/database-adapter";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 
-// GET - 获取单个产品
+// ✅ GET: Fetch single product by ID
 export async function GET(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
   try {
-    const product = await db.product.findUnique({
-      where: { id: params.id },
-      include: {
-        category: {
-          select: {
-            name: true,
-            slug: true,
-          },
-        },
-      },
-    });
+    const { id } = await params;
+    const product = await dbAdapter.getProductById(id);
 
     if (!product) {
       return NextResponse.json({ error: "Product not found" }, { status: 404 });
     }
 
-    // 转换响应数据
-    const transformedProduct = {
-      ...product,
-      images: product.images ? JSON.parse(product.images) : [],
-      tags: product.tags ? JSON.parse(product.tags) : [],
-    };
-
-    return NextResponse.json(transformedProduct);
+    return NextResponse.json(product);
   } catch (error) {
     console.error("Get product error:", error);
     return NextResponse.json(
@@ -42,15 +27,16 @@ export async function GET(
   }
 }
 
-// PUT - 更新产品 (仅管理员)
+// ✅ PUT: Update product by ID (Admin only)
 export async function PUT(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
   try {
+    const { id } = await params;
     const session = await getServerSession(authOptions);
 
-    // 检查权限
+    // Check permissions
     if (!session?.user || session.user.role !== "ADMIN") {
       return NextResponse.json(
         { error: "Unauthorized. Admin access required." },
@@ -60,22 +46,17 @@ export async function PUT(
 
     const body = await request.json();
 
-    // 检查产品是否存在
-    const existingProduct = await db.product.findUnique({
-      where: { id: params.id },
-    });
+    // Check if product exists
+    const existingProduct = await dbAdapter.getProductById(id);
 
     if (!existingProduct) {
       return NextResponse.json({ error: "Product not found" }, { status: 404 });
     }
 
-    // 如果更新 SKU，检查是否与其他产品冲突
+    // If updating SKU, check for conflicts with other products
     if (body.sku && body.sku !== existingProduct.sku) {
-      const skuConflict = await db.product.findUnique({
-        where: { sku: body.sku },
-      });
-
-      if (skuConflict) {
+      const skuConflict = await dbAdapter.getProducts({ sku: body.sku });
+      if (skuConflict.length > 0 && skuConflict[0].id !== id) {
         return NextResponse.json(
           { error: "Product with this SKU already exists" },
           { status: 409 }
@@ -83,13 +64,10 @@ export async function PUT(
       }
     }
 
-    // 如果更新 Slug，检查是否与其他产品冲突
+    // If updating Slug, check for conflicts with other products
     if (body.slug && body.slug !== existingProduct.slug) {
-      const slugConflict = await db.product.findUnique({
-        where: { slug: body.slug },
-      });
-
-      if (slugConflict) {
+      const slugConflict = await dbAdapter.getProductBySlug(body.slug);
+      if (slugConflict && slugConflict.id !== id) {
         return NextResponse.json(
           { error: "Product with this slug already exists" },
           { status: 409 }
@@ -97,39 +75,33 @@ export async function PUT(
       }
     }
 
-    // 更新产品
-    const updatedProduct = await db.product.update({
-      where: { id: params.id },
-      data: {
-        ...body,
-        images: JSON.stringify(body.images || []),
-        tags: JSON.stringify(body.tags || []),
-        price: body.price ? parseFloat(body.price) : existingProduct.price,
-        comparePrice: body.comparePrice ? parseFloat(body.comparePrice) : null,
-        cost: body.cost ? parseFloat(body.cost) : null,
-        quantity: body.quantity
+    // Prepare update data
+    const updateData: any = {
+      ...body,
+      price: body.price ? parseFloat(body.price) : existingProduct.price,
+      comparePrice: body.comparePrice
+        ? parseFloat(body.comparePrice)
+        : existingProduct.comparePrice,
+      cost: body.cost ? parseFloat(body.cost) : existingProduct.cost,
+      quantity:
+        body.quantity !== undefined
           ? parseInt(body.quantity)
           : existingProduct.quantity,
-        weight: body.weight ? parseFloat(body.weight) : null,
-      },
-      include: {
-        category: {
-          select: {
-            name: true,
-            slug: true,
-          },
-        },
-      },
-    });
-
-    // 转换响应数据
-    const transformedProduct = {
-      ...updatedProduct,
-      images: updatedProduct.images ? JSON.parse(updatedProduct.images) : [],
-      tags: updatedProduct.tags ? JSON.parse(updatedProduct.tags) : [],
+      weight: body.weight ? parseFloat(body.weight) : existingProduct.weight,
+      updatedAt: new Date(),
     };
 
-    return NextResponse.json(transformedProduct);
+    // Update product
+    const updatedProduct = await dbAdapter.updateProduct(id, updateData);
+
+    if (!updatedProduct) {
+      return NextResponse.json(
+        { error: "Failed to update product" },
+        { status: 500 }
+      );
+    }
+
+    return NextResponse.json(updatedProduct);
   } catch (error) {
     console.error("Update product error:", error);
     return NextResponse.json(
@@ -139,15 +111,16 @@ export async function PUT(
   }
 }
 
-// DELETE - 删除产品 (仅管理员)
+// ✅ DELETE: Delete product by ID (Admin only)
 export async function DELETE(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
   try {
+    const { id } = await params;
     const session = await getServerSession(authOptions);
 
-    // 检查权限
+    // Check permissions
     if (!session?.user || session.user.role !== "ADMIN") {
       return NextResponse.json(
         { error: "Unauthorized. Admin access required." },
@@ -155,21 +128,17 @@ export async function DELETE(
       );
     }
 
-    // 检查产品是否存在
-    const existingProduct = await db.product.findUnique({
-      where: { id: params.id },
-      include: {
-        orderItems: true,
-        cartItems: true,
-      },
-    });
+    // Check if product exists
+    const existingProduct = await dbAdapter.getProductById(id);
 
     if (!existingProduct) {
       return NextResponse.json({ error: "Product not found" }, { status: 404 });
     }
 
-    // 检查是否有相关的订单或购物车项目
-    if (existingProduct.orderItems.length > 0) {
+    // Check if product has related orders or cart items
+    const hasOrders = await dbAdapter.checkProductHasOrders(id);
+
+    if (hasOrders) {
       return NextResponse.json(
         {
           error:
@@ -179,10 +148,15 @@ export async function DELETE(
       );
     }
 
-    // 删除产品
-    await db.product.delete({
-      where: { id: params.id },
-    });
+    // Delete product
+    const deleted = await dbAdapter.deleteProduct(id);
+
+    if (!deleted) {
+      return NextResponse.json(
+        { error: "Failed to delete product" },
+        { status: 500 }
+      );
+    }
 
     return NextResponse.json(
       { message: "Product deleted successfully" },

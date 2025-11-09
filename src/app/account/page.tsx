@@ -1,5 +1,6 @@
 "use client";
 
+import OrderManager from "@/components/admin/order-manage";
 import { ProductManager } from "@/components/admin/product-manager";
 import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
@@ -23,7 +24,6 @@ import {
   Phone,
   Settings,
   Shield,
-  ShoppingBag,
   User,
 } from "lucide-react";
 import { useSession } from "next-auth/react";
@@ -176,7 +176,7 @@ export default function AccountPage() {
           <Tabs defaultValue="profile" className="space-y-6">
             <TabsList className="grid w-full grid-cols-2 md:grid-cols-4">
               <TabsTrigger value="profile">Profile</TabsTrigger>
-              <TabsTrigger value="orders">Orders</TabsTrigger>
+              <TabsTrigger value="orders-manage">Orders</TabsTrigger>
               {isAdmin && <TabsTrigger value="products">Products</TabsTrigger>}
               <TabsTrigger value="settings">Settings</TabsTrigger>
             </TabsList>
@@ -351,72 +351,11 @@ export default function AccountPage() {
             </TabsContent>
 
             {/* Orders Tab */}
-            <TabsContent value="orders" className="space-y-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <ShoppingBag className="h-5 w-5" />
-                    Order History
-                  </CardTitle>
-                  <CardDescription>
-                    View and track your recent orders
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  {orders.length > 0 ? (
-                    <div className="space-y-4">
-                      {orders.map((order) => (
-                        <div
-                          key={order.id}
-                          className="flex items-center justify-between p-4 border rounded-lg"
-                        >
-                          <div>
-                            <h4 className="font-semibold">
-                              {order.orderNumber}
-                            </h4>
-                            <p className="text-sm text-muted-foreground">
-                              {new Date(order.createdAt).toLocaleDateString()} •{" "}
-                              {order.items} items
-                            </p>
-                          </div>
-                          <div className="text-right">
-                            <p className="font-semibold">
-                              ${order.total.toFixed(2)}
-                            </p>
-                            <Badge
-                              variant={
-                                order.status === "DELIVERED"
-                                  ? "default"
-                                  : order.status === "SHIPPED"
-                                  ? "secondary"
-                                  : order.status === "PROCESSING"
-                                  ? "outline"
-                                  : "destructive"
-                              }
-                            >
-                              {order.status}
-                            </Badge>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  ) : (
-                    <div className="text-center py-8">
-                      <ShoppingBag className="mx-auto h-12 w-12 text-muted-foreground mb-4" />
-                      <h3 className="text-lg font-semibold mb-2">
-                        No orders yet
-                      </h3>
-                      <p className="text-muted-foreground mb-4">
-                        When you place your first order, it will appear here.
-                      </p>
-                      <Button asChild>
-                        <a href="/products">Start Shopping</a>
-                      </Button>
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-            </TabsContent>
+            {isAdmin && (
+              <TabsContent value="orders-manage" className="space-y-6">
+                <OrderManager />
+              </TabsContent>
+            )}
 
             {/* Products Tab - Admin Only */}
             {isAdmin && (

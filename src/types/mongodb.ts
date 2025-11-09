@@ -173,7 +173,7 @@ export const COLLECTIONS = {
   ADDRESSES: "addresses",
   CARTS: "carts",
   ORDERS: "orders",
-  ORDER_ITEMS: "order_items", // ✅ Add this for order line items
+  ORDER_ITEMS: "order_items",
   REVIEWS: "reviews",
 } as const;
 
